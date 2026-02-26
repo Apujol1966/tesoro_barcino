@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parada 1: Las Siete Figuras</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
+    <script src="../config.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <h1>La Puerta de la Ciudad</h1>
+    </header>
+
+    <div class="container">
+        
+        <!-- FOTO: Las letras de Joan Brossa -->
+        <div class="imagen-marco">
+            <img src="../recursos/p1-enigma.jpg" alt="Escultura visual en Plaça Nova">
+        </div>
+
+        <!-- ENIGMA DE OBSERVACIÓN -->
+        <div class="narrativa">
+            <p style="color: var(--color-acento-rojo-quemado);"><strong>Has llegado al lugar correcto.</strong></p>
+            <p>Lucio dejó escrito:</p>
+            <p><em>"Ante la muralla, verás siete figuras de bronce descansando en el suelo. Ellas gritan el nombre antiguo de mi hogar."</em></p>
+            <p>Mira a tu alrededor. Busca las letras custodiadas por el Sol y la Luna.</p>
+            <p><strong>¿Qué palabra forman las siete figuras?</strong></p>
+        </div>
+
+        <!-- INPUT RESPUESTA -->
+        <div class="input-group">
+            <input type="text" id="respuesta" placeholder="Escribe la palabra...">
+        </div>
+
+        <!-- BOTÓN COMPROBAR -->
+        <div class="navigation-controls">
+            <button class="btn" onclick="comprobarRespuesta()">ABRIR LA PUERTA</button>
+        </div>
+
+        <!-- FEEDBACK (CORREGIDO: AÑADIDO style="display: none;" PARA QUE NO SALGA AL INICIO) -->
+        <div id="mensaje-error" class="feedback error" style="display: none;">Esa no es la palabra correcta. Cuenta bien las figuras.</div>
+        
+    </div>
+
+    <!-- Candado de seguridad -->
+    <script src="candado.js"></script>
+
+    <script>
+        function comprobarRespuesta() {
+            let input = document.getElementById('respuesta').value;
+            let feedback = document.getElementById('mensaje-error');
+            
+            // Normalizar (Quitar espacios, mayúsculas, tildes)
+            let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            // SOLUCIÓN: BARCINO
+            if (respuestaLimpia === "BARCINO") {
+                // Correcto: Vamos a la recompensa
+                window.location.href = 'p1-recompensa.html';
+            } else {
+                // Incorrecto: Mostramos el mensaje ahora (no antes)
+                feedback.style.display = 'block';
+                
+                // Animación de error visual en el borde
+                let inputField = document.getElementById('respuesta');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+            }
+        }
+    </script>
+</body>
+</html>

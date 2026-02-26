@@ -6,7 +6,7 @@
 :root {
     --color-fondo-piedra: #424242; /* Gris oscuro casi negro */
     --color-texto-claro: #e0e0e0;
-    --color-acento-rojo-quemado: #b74f3b; /* Naranja/Rojo óxido */
+    --color-acento-rojo-quemado: #b74f3b; /* Naranja/Rojo óxido #b74f3b*/
     --color-acento-tierra: #8d6e63; /* Marrón tierra */
     --fuente-titulo: 'Roboto Slab', serif;
     --fuente-cuerpo: 'Arial', sans-serif;

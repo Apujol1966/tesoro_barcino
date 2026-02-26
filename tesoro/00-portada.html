@@ -2,32 +2,76 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Tesoro de Barcino</title>
+    <!-- Estilos del juego -->
     <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
+    <script src="../config.js"></script>
 </head>
 <body>
 
+    <!-- MODAL CONTINUAR PARTIDA -->
+    <div id="continue-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; justify-content:center; align-items:center; flex-direction:column; padding: 20px;">
+        <div class="container" style="text-align:center; border-color: #fff;">
+            <h2 style="color: var(--color-acento-rojo-quemado); margin-top:0;">¡Partida Detectada!</h2>
+            <p style="margin-bottom:20px;">Parece que ya habías empezado la búsqueda.</p>
+            <button class="btn" id="btn-continuar" style="margin-bottom:15px;">CONTINUAR DONDE LO DEJÉ</button>
+            <button class="hint-btn" id="btn-reiniciar">EMPEZAR DE CERO</button>
+        </div>
+    </div>
+
     <header class="header">
-        <h1>El Tesoro de Barcino</h1>
+        <h1>La Carta de África</h1>
     </header>
 
     <div class="container">
         
         <div class="imagen-marco">
-            <img src="../recursos/portada.jpg" alt="Imagen de El Tesoro de Barcino">
+            <img src="../recursos/trama-lucio-inicio.jpg" alt="Estatua de Lucio Minicio Natal">
         </div>
 
-        <div class="narrativa text-center">
-			<p>Lucio Minicio Natal, héroe de Barcino, reclama tu ayuda para recuperar su tesoro y evitar que los senadores corruptos de la ciudad se hagan con él.</p>
-		</div>
+        <!-- NARRATIVA EXACTA SOLICITADA -->
+        <div class="narrativa">
+            <p><strong>"¡Salve, ciudadano! Si lees esto, la diosa Fortuna ha querido que seas mi última esperanza."</strong></p>
+            
+            <p>Mi nombre es <strong>Lucio Minicio Natal</strong>. Las piedras de <strong>Barcino</strong> cuentan mi historia: fui el primer hispano en ganar el laurel olímpico con mi cuadriga (129 d.C.) y regalé a la ciudad sus grandiosas termas.</p>
+            
+            <p>Te escribo desde <strong>África</strong>, donde sirvo a Roma como procónsul. Mi vida y mi legado corren peligro. Si esta carta te ha llegado, quizás es que ya... Desde aquí, mis manos están atadas, pero noticias oscuras llegan a mis oídos: senadores corruptos conspiran para saquear el tesoro que oculté, dispuesto para proteger el futuro de Barcino.</p>
+            
+            <p>He encriptado la ubicación del Tesoro en esta carta. Solo alguien con astucia y honor podrá descifrarla antes de que sea demasiado tarde.</p>
+            
+            <p><strong>El destino de mi legado está ahora en tus manos.</strong></p>
+            <p><strong>¿Aceptas el desafío?</strong></p>
+        </div>
 
         <div class="navigation-controls">
-            <button class="btn" onclick="window.location.href='trama-01-inicio.html'">¿ACEPTAS EL RETO?</button>
+            <!-- AL PULSAR, VAMOS A LA PARADA 1 -->
+            <button class="btn" onclick="empezarJuego()">ACEPTO EL RETO</button>
         </div>
 
     </div>
 
     <script src="candado.js"></script>
+
+    <script>
+        // Lógica de Continuar Partida
+        document.addEventListener("DOMContentLoaded", function() {
+            let paginaGuardada = localStorage.getItem('progresoJuego');
+            if (paginaGuardada) {
+                let modal = document.getElementById('continue-modal');
+                modal.style.display = 'flex';
+                document.getElementById('btn-continuar').onclick = function() { window.location.href = paginaGuardada; };
+                document.getElementById('btn-reiniciar').onclick = function() { localStorage.removeItem('progresoJuego'); modal.style.display = 'none'; };
+            }
+        });
+
+        function empezarJuego() {
+            // Guardamos que empezamos y vamos a la Parada 1
+            let primeraParada = "p1-navegacion.html";
+            localStorage.setItem('progresoJuego', primeraParada);
+            window.location.href = primeraParada;
+        }
+    </script>
 </body>
 </html>

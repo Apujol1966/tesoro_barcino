@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Corazón Sagrado</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
+    <script src="../config.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <h1>El Siguiente Fragmento</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p1-recompensa.jpg" alt="Detalle del Acueducto">
+        </div>
+
+        <div class="narrativa">
+            <p style="font-size: 1.2rem;"><strong>¡Exacto! BARCINO.</strong></p>
+            
+            <!-- FRASE CONTEXTUAL RECUPERADA -->
+            <p><strong>Estás ante la puerta por donde entraba el agua, la sangre de la ciudad.</strong></p>
+            
+            <!-- CURIOSIDAD HISTÓRICA MEJORADA -->
+            <div style="background-color: rgba(255, 255, 255, 0.08); padding: 15px; border-left: 4px solid var(--color-acento-rojo-quemado); margin: 20px 0; font-size: 0.95rem;">
+                <p style="margin-top: 0;"><strong>🏛️ Archivos de la Ciudad:</strong></p>
+                <p>Las venas de piedra que ves ante ti son vestigios de un milagro de la ingeniería. Este acueducto, construido en el siglo I, transportaba el agua del río Besós desde Montcada durante más de nueve siglos, manteniendo viva a Barcino mucho después de la caída de Roma.</p>
+            </div>
+
+            <!-- NARRATIVA "IN-CARTA" -->
+            <p>Pero el tesoro no está aquí, a la vista de todos. Está en el lugar más sagrado.</p>
+            <p>Utiliza la clave para saber el camino a seguir:</p>
+            
+            <p style="text-align: center; color: var(--color-acento-rojo-quemado);"><strong>B = II &nbsp; | &nbsp; A = I &nbsp; | &nbsp; I = IX</strong></p>
+            
+            <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 4px; text-align: center; font-family: monospace; font-size: 1.1rem; border: 1px solid var(--color-acento-tierra); letter-spacing: 1px;">
+                I / XXII / VII / XXII / XX / XXI / IX
+                <br><br>
+                -
+                <br><br>
+                XXI / V / XIII / XVII / XII / IX
+            </div>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="respuesta" placeholder="Descifra el destino...">
+        </div>
+
+        <div class="navigation-controls">
+            <button class="btn" onclick="comprobarRespuesta()">IR AL SIGUIENTE LUGAR</button>
+        </div>
+
+        <div id="mensaje-error" class="feedback error" style="display: none;">El código es incorrecto. Revisa las letras.</div>
+
+        <!-- Botón de Pista -->
+        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
+        
+        <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
+            <strong>Pista:</strong> Es un cifrado simple. Cada número romano corresponde a una posición en el abecedario. I (1) es A, V (5) es E...
+        </div>
+
+    </div>
+
+    <!-- Candado -->
+    <script src="candado.js"></script>
+
+    <script>
+        let intentos = 0;
+
+        function comprobarRespuesta() {
+            let input = document.getElementById('respuesta').value;
+            let feedback = document.getElementById('mensaje-error');
+            
+            // Normalizar
+            let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            // SOLUCIÓN
+            if (respuestaLimpia === "AUGUSTI TEMPLI" || 
+                respuestaLimpia === "AUGUSTITEMPLI" || 
+                respuestaLimpia.includes("TEMPLO DE AUGUSTO")) {
+                
+                // Correcto
+                window.location.href = 'p2-navegacion.html';
+                
+            } else {
+                intentos++;
+                feedback.style.display = 'block';
+                
+                let inputField = document.getElementById('respuesta');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+
+                if (intentos >= 3) {
+                    document.getElementById('btn-pista').style.display = 'inline-block';
+                }
+            }
+        }
+
+        function mostrarPista() {
+            document.getElementById('texto-pista').style.display = 'block';
+            document.getElementById('btn-pista').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

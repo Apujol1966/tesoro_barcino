@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Primer Paso</title>
+    <!-- Estilos Generales -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
+    <script src="../config.js"></script>
+
+    <!-- ESTILOS ESPECÍFICOS PARA EL MODAL (Pregunta de Atención) -->
+    <style>
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: none; align-items: center; justify-content: center;
+            z-index: 1000; padding: 20px; box-sizing: border-box;
+        }
+        .modal-content {
+            background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
+            padding: 25px; border-radius: 4px; text-align: center;
+            width: 100%; max-width: 400px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+        .modal-input {
+            width: 100%; padding: 10px; margin: 15px 0;
+            background: #1a1a1a; border: 1px solid #555; color: #fff;
+            text-align: center; font-size: 1.1rem; box-sizing: border-box;
+        }
+        .error-msg { color: #ff6b6b; font-size: 0.9rem; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. MODAL DEL GUARDIÁN (Oculto al principio) -->
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Demuestra tu atención</h3>
+            <p>Antes de revelarte el camino, responde:</p>
+            <p><em>"Según el texto de Lucio, ¿por qué sendero debes continuar después de la fuente?"</em></p>
+            
+            <input type="text" id="guardian-answer" class="modal-input" placeholder="Escribe tu respuesta">
+            
+            <button class="btn" onclick="checkGuardianAnswer()">VALIDAR</button>
+            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancelar</button>
+            
+            <div id="guardian-error" class="error-msg">Respuesta incorrecta. Lee bien el texto de Lucio.</div>
+        </div>
+    </div>
+
+    <!-- 2. CONTENIDO PRINCIPAL -->
+    <header class="header">
+        <h1>El Primer Paso</h1>
+    </header>
+
+    <div class="container">
+        
+        <!-- FOTO: Punto de partida (Plaça Catalunya o genérica) -->
+        <div class="imagen-marco">
+            <img src="../recursos/p1-inicio.jpg" alt="Inicio del camino">
+        </div>
+
+        <!-- PISTA POÉTICA (Texto de Lucio) -->
+        <div class="narrativa">
+            <p><strong>Seguid el sendero de mis palabras...</strong></p>
+            
+            <p><em>"Desde el lugar en el que empieza tu andadura, debes pasar a través de la fuente de los más inocentes con sus cestas y continuar por el <strong>sendero del Ángel</strong>."</em></p>
+            
+            <p><em>"Casi al final del camino, cuando no sepas qué dirección tomar, deja a las mujeres que transportan ánforas a tu derecha."</em></p>
+            
+            <p><em>"A Barcino, mi ciudad, su sangre en forma del líquido de la vida llega a través de sus venas hechas de piedra."</em></p>
+            
+            <p>Allí, donde su arteria empieza y termina, donde siete figuras custodiadas por el Sol y la
+			Luna descansan en el suelo, escrito con ellas encontraréis el camino a seguir.</p>
+        </div>
+
+        <!-- BOTÓN DE AYUDA (Abre el Modal) -->
+        <div style="width: 100%; margin-bottom: 20px; text-align: center;">
+            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 Estoy perdido (Pedir Ayuda)</button>
+            
+            <!-- PISTA DIRECTA (Se muestra solo tras acertar la pregunta) -->
+            <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px;">
+                <p><strong>Pista de Navegación:</strong></p>
+                <p>Sitúate en Plaça Catalunya. Baja por la avenida <strong>Portal de l'Àngel</strong> hasta el final.</p>
+                <p>Llegarás a la plaza de la Catedral (Plaça Nova). Busca los restos del <strong>Acueducto Romano</strong> pegados a la muralla.</p>
+                <br>
+                <a href="https://www.google.com/maps/search/?api=1&query=Plaça+Nova+Barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VER MAPA</a>
+            </div>
+        </div>
+
+        <div class="navigation-controls">
+            <!-- Botón para ir al ENIGMA -->
+            <button class="btn" onclick="window.location.href='p1-enigma.html'">HE LLEGADO A LAS VENAS DE PIEDRA</button>
+        </div>
+
+    </div>
+
+    <!-- Candado de seguridad -->
+    <script src="candado.js"></script>
+
+    <script>
+        // LÓGICA DEL GUARDIÁN
+        var modal = document.getElementById('guardian-modal');
+        var errorMsg = document.getElementById('guardian-error');
+        var input = document.getElementById('guardian-answer');
+
+        function openModal() {
+            modal.style.display = 'flex';
+            input.value = "";
+            errorMsg.style.display = 'none';
+            input.focus();
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        function checkGuardianAnswer() {
+            // Normalizamos la respuesta (Mayúsculas, sin tildes, sin espacios extra)
+            let respuesta = input.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
+            // RESPUESTA CORRECTA: ANGEL
+            if (respuesta.includes("ANGEL")) {
+                // Acierto: Cerramos modal y mostramos la pista
+                closeModal();
+                document.getElementById('pista-texto').style.display = 'block';
+                document.getElementById('btn-pista-trigger').style.display = 'none'; // Ocultamos el botón de pedir ayuda
+            } else {
+                // Fallo
+                errorMsg.style.display = 'block';
+                // Efecto de temblor (opcional, simple visual)
+                input.style.borderColor = "#ff6b6b";
+                setTimeout(() => input.style.borderColor = "#555", 500);
+            }
+        }
+    </script>
+</body>
+</html>

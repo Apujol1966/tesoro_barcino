@@ -1,16 +1,18 @@
 // candado.js
-// Este script protege el acceso al juego
 const claveGuardada = localStorage.getItem('clave_guardada');
 
-//Comprobamos si existe la variable clave_guardada y ademas es distinta a la clave actual
+// Si no hay clave correcta...
 if (claveGuardada !== CLAVE_ACTUAL) {
-    // Redirigimos al login correspondiente
-    let url = "../login_es.html"; //Por defecto español
+    // Detectamos idioma
     let idioma = navigator.language || navigator.userLanguage;
+    
+    // IMPORTANTE: Los dos puntos (..) significan "subir a la carpeta principal"
+    // donde están los ficheros login_es.html, etc.
     if (idioma.startsWith('ca')) {
-        url = "../login_ca.html";
+        window.location.href = "../login_ca.html";
     } else if (idioma.startsWith('en')) {
-        url = "../login_en.html";
+        window.location.href = "../login_en.html";
+    } else {
+        window.location.href = "../login_es.html";
     }
-    window.location.href = url;
 }
