@@ -5,29 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Instrucciones - El Tesoro de Barcino</title>
     <link rel="stylesheet" href="tesoro-estilos.css">
+    
+    <!-- ESTILOS ESPECÍFICOS PARA LA LISTA DE INSTRUCCIONES -->
+    <style>
+        .instructions-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left; /* Alineado a la izquierda para mejor lectura */
+        }
+        .instructions-list li {
+            position: relative;
+            padding-left: 30px; /* Espacio para el check */
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .instructions-list li:last-child {
+            margin-bottom: 0;
+        }
+        /* El símbolo del check */
+        .instructions-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--color-acento-rojo-quemado); /* Rojo del tema */
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        /* Los títulos de cada punto */
+        .instructions-list strong {
+            display: block;
+            color: var(--color-acento-rojo-quemado);
+            font-family: var(--fuente-titulo);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+        }
+    </style>
 </head>
 <body>
 
     <header class="header">
-        <h1>Instrucciones</h1>
+        <h1>Antes de Empezar</h1>
     </header>
 
     <div class="container">
         
+        <!-- Usamos la clase narrativa para el fondo, pero con la lista dentro -->
         <div class="narrativa">
-            <p><span class="instruccion-titulo">OBJETIVO:</span><br>Resuelve los enigmas históricos y sigue las pistas de Lucio para descubrir el Tesoro de Barcino.</p>
-            <p><span class="instruccion-titulo">AYUDA EN ENIGMAS:</span><br>Tras 3 intentos fallidos, recibirás una pista. ¡Cuantos más fallos, más directa será la ayuda!</p>
-            <p><span class="instruccion-titulo">AYUDA PARA NAVEGAR:</span><br>
-                ¿No sabes dónde ir? Tendrás a tu disposición:
-                <em>Pista Poética, Pista Directa y Mapa.</em>
-            </p>
-            <p><span class="instruccion-titulo">A TU RITMO... ¡O COMPITE!:</span><br>Juega a tu aire o activa el cronómetro para desafiar a tus amigos.</p>
-            <p><span class="instruccion-titulo">¡RECUERDA!:</span><br>Ajusta el brillo y carga la batería. ¡La aventura te espera!</p>
+            <ul class="instructions-list">
+                <li>
+                    <strong>TU MISIÓN</strong>
+                    Resuelve los enigmas históricos y sigue las pistas de Lucio para descubrir el Tesoro de Barcino.
+                </li>
+                <li>
+                    <strong>AYUDA EN ENIGMAS</strong>
+                    Si te atascas en una prueba, ¡no te preocupes! Tras 3 intentos fallidos aparecerá un botón para ayudarte.
+                </li>
+                <li>
+                    <strong>AYUDA PARA NAVEGAR</strong>
+                    Para ir de una parada a otra te daremos una pista. Si no es suficiente, superando pequeños tests de atención, podrás desbloquear una Pista Directa y si aún no es suficiente otra pista con un Mapa.
+                </li>
+                <li>
+                    <strong>JUEGA A TU RITMO... ¡O COMPITE!</strong>
+                    Disfruta del paseo sin prisas... ¡o reta a tus amigos para ver quién descifra antes el misterio!
+                </li>
+            </ul>
         </div>
 
         <div class="navigation-controls">
-            <button class="btn" onclick="window.location.href='00-portada.html'">CONTINUAR</button>
+            <!-- Botón con el texto del juego anterior -->
+            <button class="btn" onclick="window.location.href='00-portada.html'">ENTENDIDO, ¡A JUGAR!</button>
         </div>
+
+    </div>
 
     <script src="candado.js"></script>
 </body>

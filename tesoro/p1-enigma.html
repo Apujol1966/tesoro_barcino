@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parada 1: Las Siete Figuras</title>
+    <title>Parada 1: Las Venas de Piedra</title>
     <!-- Estilos -->
     <link rel="stylesheet" href="tesoro-estilos.css">
     <!-- Configuración -->
@@ -12,37 +12,38 @@
 <body>
 
     <header class="header">
-        <h1>La Puerta de la Ciudad</h1>
+        <h1>La Prueba de las Venas</h1>
     </header>
 
     <div class="container">
         
-        <!-- FOTO: Las letras de Joan Brossa -->
         <div class="imagen-marco">
-            <img src="../recursos/p1-enigma.jpg" alt="Escultura visual en Plaça Nova">
+            <img src="../recursos/p1-enigma.jpg" alt="Arcos del acueducto en la muralla">
         </div>
 
-        <!-- ENIGMA DE OBSERVACIÓN -->
         <div class="narrativa">
-            <p style="color: var(--color-acento-rojo-quemado);"><strong>Has llegado al lugar correcto.</strong></p>
-            <p>Lucio dejó escrito:</p>
-            <p><em>"Ante la muralla, verás siete figuras de bronce descansando en el suelo. Ellas gritan el nombre antiguo de mi hogar."</em></p>
-            <p>Mira a tu alrededor. Busca las letras custodiadas por el Sol y la Luna.</p>
-            <p><strong>¿Qué palabra forman las siete figuras?</strong></p>
+            <p><strong>Demuestra que estás aquí.</strong></p>
+            <p>Lucio escribió:</p>
+            <p><em>"La sangre de la ciudad (el agua) entraba por estas venas de piedra. Si de verdad has seguido mis pasos, alza la vista hacia la muralla, junto a la torre de defensa."</em></p>
+            <p><strong>¿Cuántos arcos del acueducto reconstruido puedes ver ahí arriba?</strong></p>
         </div>
 
-        <!-- INPUT RESPUESTA -->
         <div class="input-group">
-            <input type="text" id="respuesta" placeholder="Escribe la palabra...">
+            <input type="text" id="respuesta" placeholder="Escribe el número...">
         </div>
 
-        <!-- BOTÓN COMPROBAR -->
         <div class="navigation-controls">
-            <button class="btn" onclick="comprobarRespuesta()">ABRIR LA PUERTA</button>
+            <button class="btn" onclick="comprobarRespuesta()">COMPROBAR</button>
         </div>
 
-        <!-- FEEDBACK (CORREGIDO: AÑADIDO style="display: none;" PARA QUE NO SALGA AL INICIO) -->
-        <div id="mensaje-error" class="feedback error" style="display: none;">Esa no es la palabra correcta. Cuenta bien las figuras.</div>
+        <div id="mensaje-error" class="feedback error" style="display: none;">Ese no es el número correcto. Mira bien arriba.</div>
+
+        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
+        
+        <!-- CORREGIDO: míralo, ángulos -->
+        <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
+            <strong>Pista:</strong> No cuentes toda la muralla. Solo los arcos semicirculares que salen de la torre. Y míralo desde todos los ángulos.
+        </div>
         
     </div>
 
@@ -50,6 +51,8 @@
     <script src="candado.js"></script>
 
     <script>
+        let intentos = 0;
+
         function comprobarRespuesta() {
             let input = document.getElementById('respuesta').value;
             let feedback = document.getElementById('mensaje-error');
@@ -57,19 +60,32 @@
             // Normalizar (Quitar espacios, mayúsculas, tildes)
             let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-            // SOLUCIÓN: BARCINO
-            if (respuestaLimpia === "BARCINO") {
-                // Correcto: Vamos a la recompensa
+            // SOLUCIÓN: 2 o DOS
+            if (respuestaLimpia === "2" || 
+                respuestaLimpia === "DOS" || 
+                respuestaLimpia === "DOS ARCOS") {
+                
+                // Correcto
                 window.location.href = 'p1-recompensa.html';
+                
             } else {
-                // Incorrecto: Mostramos el mensaje ahora (no antes)
+                // Incorrecto
+                intentos++;
                 feedback.style.display = 'block';
                 
-                // Animación de error visual en el borde
                 let inputField = document.getElementById('respuesta');
                 inputField.style.borderColor = '#ff6b6b';
                 setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+
+                if (intentos >= 3) {
+                    document.getElementById('btn-pista').style.display = 'inline-block';
+                }
             }
+        }
+
+        function mostrarPista() {
+            document.getElementById('texto-pista').style.display = 'block';
+            document.getElementById('btn-pista').style.display = 'none';
         }
     </script>
 </body>
