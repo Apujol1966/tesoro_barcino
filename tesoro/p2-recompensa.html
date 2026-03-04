@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Corazón del Templo</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
+    <script src="../config.js"></script>
+    
+    <!-- ESTILOS DEL MODAL DE AYUDA (Necesarios aquí también) -->
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+        .modal-input { width: 100%; padding: 10px; margin: 15px 0; background: #1a1a1a; border: 1px solid #555; color: #fff; text-align: center; font-size: 1.1rem; box-sizing: border-box; }
+        .error-msg { color: #ff6b6b; font-size: 0.9rem; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL GUARDIÁN -->
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Demuestra tu atención</h3>
+            <p>Lucio habla de una "viajera". ¿De qué material crees que está hecha?</p>
+            <input type="text" id="guardian-answer" class="modal-input" placeholder="Escribe el material">
+            <button class="btn" onclick="checkGuardianAnswer()">VALIDAR</button>
+            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancelar</button>
+            <div id="guardian-error" class="error-msg">Incorrecto. Mira lo que tienes delante.</div>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>El Corazón del Templo</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p2-recompensa.jpg" alt="Columnas del Templo de Augusto">
+        </div>
+
+        <div class="narrativa">
+            <p style="font-size: 1.2rem;"><strong>¡Exacto! 16,9 metros.</strong></p>
+            
+            <!-- TEXTO CORREGIDO -->
+            <p>Sigue adelante, cruza el vestíbulo y contempla por fin lo que he protegido: los últimos vestigios del Templo de Augusto.</p>
+
+            <!-- ENLACE POR SI ESTÁ CERRADO -->
+            <div style="text-align:center; margin: 15px 0;">
+                <p style="font-size: 0.9rem;"><em>(Si está cerrado, no te preocupes)</em></p>
+                <a href="pista-cerrado.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem;">
+                    Ver el interior
+                </a>
+            </div>
+
+            <!-- FRAGMENTO DE LA CARTA (LA VIAJERA) -->
+            <div style="border-top: 1px solid var(--color-acento-tierra); margin-top: 20px; padding-top: 20px;">
+                <p><em>"Si lees estas palabras allí donde debes, es que mi mensaje has sabido escuchar."</em></p>
+                <p><em>"Ahora, para seguir el camino, deberás a una viajera imitar."</em></p>
+                <p><em>"Para conocer a la viajera, una pista te entrego. Resuélvela y sigue su sendero."</em></p>
+                <p><strong>“¿Dónde estuve cuando mi cuerpo estuvo entero?”</strong></p>
+            </div>
+        </div>
+
+        <!-- SISTEMA DE AYUDA RECUPERADO -->
+        <div style="width: 100%; margin-bottom: 20px; text-align: center;">
+            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 No entiendo el acertijo (Ayuda)</button>
+            
+            <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px;">
+                <p><strong>Pista del Historiador:</strong></p>
+                <p>La "viajera" es una de las columnas que tienes delante. Se derrumbó y fue trasladada a la <strong>Plaça del Rei</strong> en la Edad Media, donde permaneció siglos hasta volver aquí.</p>
+                <p>Lucio te está diciendo que sigas su sendero... pero el siguiente paso de la carta te guiará con más detalle en la próxima pantalla.</p>
+                <br>
+                <a href="https://www.google.com/maps/search/?api=1&query=Plaça+del+Rei+Barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VER MAPA (Origen de la Viajera)</a>
+            </div>
+        </div>
+
+        <div class="navigation-controls">
+            <button class="btn" onclick="window.location.href='p3-navegacion.html'">CONTINUAR</button>
+        </div>
+
+    </div>
+
+    <!-- Candado -->
+    <script src="candado.js"></script>
+
+    <script>
+        var modal = document.getElementById('guardian-modal');
+        var errorMsg = document.getElementById('guardian-error');
+        var input = document.getElementById('guardian-answer');
+
+        function openModal() {
+            modal.style.display = 'flex';
+            input.value = "";
+            errorMsg.style.display = 'none';
+            input.focus();
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        function checkGuardianAnswer() {
+            let respuesta = input.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
+            // RESPUESTA: PIEDRA
+            if (respuesta.includes("PIEDRA") || respuesta.includes("MARMOL")) {
+                closeModal();
+                document.getElementById('pista-texto').style.display = 'block';
+                document.getElementById('btn-pista-trigger').style.display = 'none';
+            } else {
+                errorMsg.style.display = 'block';
+                input.style.borderColor = "#ff6b6b";
+                setTimeout(() => input.style.borderColor = "#555", 500);
+            }
+        }
+    </script>
+</body>
+</html>

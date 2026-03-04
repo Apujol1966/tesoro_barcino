@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parada 2: La Cima</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
+    <script src="../config.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <h1>La Cima de Barcino</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p2-enigma.jpg" alt="Placa del Mont Tàber">
+        </div>
+
+        <div class="narrativa">
+            <p>Has llegado al número 10 de Carrer Paradís, la sede del <strong>Centre Excursionista de Catalunya</strong>.</p>
+
+            <p>Antes de seguir adelante, mira al suelo de la entrada. Esa <strong>piedra de molino</strong> no es una simple decoración. Es el <strong>marcador geográfico</strong> que señala la cima exacta del Monte Táber.</p>
+            
+            <p>Estás pisando el 'techo' de la antigua Barcino, el punto exacto donde los romanos decidieron alzar su templo más importante.</p>
+            
+            <p>Ahora, para demostrar que estás aquí, mira la placa metálica de la pared.</p>
+            
+            <p><strong>¿A qué altura exacta (en metros) indica la placa que nos encontramos?</strong></p>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="respuesta" placeholder="Ej: 10,5">
+        </div>
+
+        <div class="navigation-controls">
+            <button class="btn" onclick="comprobarRespuesta()">COMPROBAR ALTURA</button>
+        </div>
+
+        <div id="mensaje-error" class="feedback error" style="display: none;">Esa no es la altura correcta. Mira bien los números.</div>
+
+        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
+        
+        <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
+            <strong>Pista:</strong> Busca un óvalo metálico en la pared de la entrada. El número tiene una coma decimal.
+        </div>
+        
+    </div>
+
+    <!-- Candado -->
+    <script src="candado.js"></script>
+
+    <script>
+        let intentos = 0;
+
+        function comprobarRespuesta() {
+            let input = document.getElementById('respuesta').value;
+            let feedback = document.getElementById('mensaje-error');
+            
+            // Limpiamos la respuesta para aceptar varias formas de escribirlo
+            let respuestaLimpia = input.toLowerCase().trim().replace('m', '').replace('mts', '').replace('.', ',').trim();
+
+            // SOLUCIÓN: 16,9
+            if (respuestaLimpia === "16,9" || respuestaLimpia === "16,90") {
+                
+                // Correcto: Vamos a la recompensa de la Parada 2
+                window.location.href = 'p2-recompensa.html';
+                
+            } else {
+                intentos++;
+                feedback.style.display = 'block';
+                
+                let inputField = document.getElementById('respuesta');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+
+                if (intentos >= 3) {
+                    document.getElementById('btn-pista').style.display = 'inline-block';
+                }
+            }
+        }
+
+        function mostrarPista() {
+            document.getElementById('texto-pista').style.display = 'block';
+            document.getElementById('btn-pista').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

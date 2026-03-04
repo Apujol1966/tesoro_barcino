@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pista: Templo Cerrado</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
+    <script src="../config.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Vistazo al Interior</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p2-columnas-interior.jpg" alt="Interior del Templo de Augusto">
+        </div>
+
+        <div class="narrativa">
+            <p><strong>Si no has podido entrar, aquí tienes lo que guardan estos muros.</strong></p>
+            <p>Son los últimos vestigios del gran Templo de Augusto, el corazón de la antigua Barcino.</p>
+
+            <!-- ENLACE AL PDF (REDUCIDO Y CORREGIDO) -->
+            <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border: 1px solid var(--color-acento-tierra); margin: 20px 0; text-align: center; border-radius: 6px;">
+                <p style="margin: 0 0 10px 0; font-size: 0.95rem;">
+                    <strong>📜 Archivo Histórico:</strong><br>
+                    Descubre el secreto de la "Viajera":
+                </p>
+                
+                <a href="../recursos/columna_viajera.pdf" target="_blank" class="btn" 
+                   style="background-color: var(--color-acento-tierra); 
+                          display: inline-block; 
+                          width: auto; 
+                          padding: 10px 20px; 
+                          font-size: 0.9rem;
+                          margin: 0;">
+                    📄 LEER SOBRE LA VIAJERA
+                </a>
+            </div>
+
+            <!-- BLOQUE DE HORARIOS -->
+            <div style="font-size: 0.85rem; color: #ccc; border-top: 1px solid #555; padding-top: 15px;">
+                <p style="margin-top: 0; color: var(--color-acento-rojo-quemado);"><strong>🕰️ HORARIOS:</strong></p>
+                <ul style="list-style-type: none; padding-left: 0; text-align: left; margin: 5px 0;">
+                    <li>Lunes: 10:00 – 14:00</li>
+                    <li>Martes a Sábado: 10:00 – 19:00</li>
+                    <li>Domingos: 10:00 – 20:00</li>
+                </ul>
+                <p style="margin-bottom: 0;">(Entrada gratuita)</p>
+            </div>
+        </div>
+
+        <div class="navigation-controls">
+            <!-- Botón para volver a la pantalla anterior -->
+            <button class="btn" onclick="history.back()">VOLVER AL JUEGO</button>
+        </div>
+
+    </div>
+
+    <!-- Candado -->
+    <script src="candado.js"></script>
+</body>
+</html>
