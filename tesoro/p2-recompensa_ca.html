@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Corazón del Templo</title>
+    <title>El Cor del Temple</title>
     <link rel="stylesheet" href="tesoro-estilos.css">
     <script src="../config.js"></script>
 
@@ -28,77 +28,78 @@
 </head>
 <body>
 
-    <!-- MODAL DEL GUARDIÁN -->
+    <!-- MODAL DEL GUARDIÀ -->
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
-            <h3>Demuestra tu atención</h3>
-            <p>Lucio habla de una "viajera". ¿De qué material crees que está hecha?</p>
-            <input type="text" id="guardian-answer" class="modal-input" placeholder="Escribe el material">
+            <h3>Demostra la teva atenció</h3>
+            <p>Luci parla d'una "viatgera". De quin material creus que està feta?</p>
+            <input type="text" id="guardian-answer" class="modal-input" placeholder="Escriu el material">
             <button class="btn" onclick="checkGuardianAnswer()">VALIDAR</button>
-            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancelar</button>
-            <div id="guardian-error" class="error-msg">Incorrecto. Mira lo que tienes delante.</div>
+            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancel·lar</button>
+            <div id="guardian-error" class="error-msg">Incorrecte. Mira el que tens davant.</div>
         </div>
     </div>
 
-    <!-- MODAL DEL MASTER -->
+    <!-- MODAL DEL MÀSTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
-            <h3>Contacta con el Master</h3>
-            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <h3>Contacta amb el Màster</h3>
+            <p>Si tens cap incidència tècnica o un dubte que les pistes no resolen, pots contactar directament amb mi.</p>
             <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
-                Teléfono / WhatsApp:<br>
+                Telèfon / WhatsApp:<br>
                 664 252 723
             </p>
-            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Tancar</button>
         </div>
     </div>
 
     <header class="header">
-        <h1>El Corazón del Templo</h1>
+        <h1>El Cor del Temple</h1>
     </header>
 
     <div class="container">
         
         <div class="imagen-marco">
-            <img src="../recursos/p2-recompensa.jpg" alt="Columnas del Templo de Augusto">
+            <img src="../recursos/p2-recompensa.jpg" alt="Columnes del Temple d'August">
         </div>
 
         <div class="narrativa">
-            <p>Sigue adelante, cruza el vestíbulo y contempla por fin lo que he protegido: los últimos vestigios del Templo de Augusto.</p>
+            <p>Segueix endavant, creua el vestíbul i contempla per fi el que he protegit: els últims vestigis del Temple d'August.</p>
 
             <div style="text-align:center; margin: 15px 0;">
-                <p style="font-size: 0.9rem;"><em>(Si está cerrado, no te preocupes)</em></p>
-                <a href="pista-cerrado.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem;">
-                    Ver el interior
+                <p style="font-size: 0.9rem;"><em>(Si està tancat, no et preocupis)</em></p>
+                <a href="pista-cerrado_ca.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem;">
+                    Veure l'interior
                 </a>
             </div>
 
-            <!-- FRAGMENTO DE LA CARTA (COMILLAS AGRUPADAS) -->
+            <!-- FRAGMENT DE LA CARTA -->
             <div style="border-top: 1px solid var(--color-acento-tierra); margin-top: 20px; padding-top: 20px; font-style: italic;">
-                <p>"Si lees estas palabras allí donde debes, es que mi mensaje has sabido escuchar.</p>
-                <p>Ahora, para seguir el camino, deberás a una viajera imitar.</p>
-                <p>Para conocer a la viajera, una pista te entrego. Resuélvela y sigue su sendero.</p>
-                <p style="font-style: normal;"><strong>¿Dónde estuve cuando mi cuerpo estuvo entero?</strong>"</p>
+                <p>"Si llegeixes aquestes paraules allà on deus, és que el meu missatge has sabut escoltar.</p>
+                <p>Ara, per seguir el camí, hauràs a una viatgera imitar.</p>
+                <p>Per conèixer a la viatgera, una pista t'entrego. Resol-la i segueix el seu sender.</p>
+                <p style="font-style: normal;"><strong>On vaig estar quan el meu cos va estar sencer?</strong>"</p>
             </div>
         </div>
 
         <div style="width: 100%; margin-bottom: 20px; text-align: center;">
-            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 No entiendo el acertijo (Ayuda)</button>
+            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 No entenc l'enigma (Ajuda)</button>
             
             <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px;">
-                <p><strong>Pista del Historiador:</strong></p>
-                <p>La "viajera" es una de las columnas que tienes delante. Se derrumbó y fue trasladada a la <strong>Plaça del Rei</strong> en la Edad Media, donde permaneció siglos hasta volver aquí.</p>
-                <p>Lucio te está diciendo que vayas allí... pero el siguiente paso de la carta te guiará con más detalle en la próxima pantalla.</p>
+                <p><strong>Pista de l'Historiador:</strong></p>
+                <p>La "viatgera" és una de les columnes que tens al davant. Es va ensorrar i va ser traslladada a la <strong>Plaça del Rei</strong> a l'Edat Mitjana, on va romandre segles fins a tornar aquí.</p>
+                <p>Luci t'està dient que vagis allà... però el següent pas de la carta et guiarà amb més detall a la propera pantalla.</p>
                 <br>
-                <a href="https://www.google.com/maps/search/?api=1&query=Plaça+del+Rei+Barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VER MAPA (Origen de la Viajera)</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Plaça+del+Rei+Barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VEURE MAPA (Origen de la Viatgera)</a>
             </div>
         </div>
 
         <div class="navigation-controls">
-            <button class="btn" onclick="window.location.href='p3-navegacion.html'">CONTINUAR</button>
+            <!-- Enllaç a la següent parada en català -->
+            <button class="btn" onclick="window.location.href='p3-navegacion_ca.html'">CONTINUAR</button>
             
-            <!-- BOTÓN CONTACTA CON EL MASTER -->
-            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+            <!-- BOTÓ CONTACTA AMB EL MÀSTER -->
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta amb el Màster</button>
         </div>
 
     </div>
@@ -106,7 +107,6 @@
     <script src="candado.js"></script>
 
     <script>
-        // LÓGICA DEL GUARDIÁN
         var modal = document.getElementById('guardian-modal');
         var errorMsg = document.getElementById('guardian-error');
         var input = document.getElementById('guardian-answer');
@@ -117,15 +117,12 @@
             errorMsg.style.display = 'none';
             input.focus();
         }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
+        function closeModal() { modal.style.display = 'none'; }
 
         function checkGuardianAnswer() {
-            let respuesta = input.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let resposta = input.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             
-            if (respuesta.includes("PIEDRA") || respuesta.includes("MARMOL")) {
+            if (resposta.includes("PEDRA") || resposta.includes("MARBRE")) {
                 closeModal();
                 document.getElementById('pista-texto').style.display = 'block';
                 document.getElementById('btn-pista-trigger').style.display = 'none';
@@ -136,7 +133,6 @@
             }
         }
 
-        // LÓGICA DEL MASTER
         function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
         function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>

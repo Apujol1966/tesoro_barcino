@@ -20,6 +20,17 @@
             text-align: center;
         }
 
+        h1 {
+            color: #b74f3b; /* Rojo del estilo Ruinas */
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
         button {
             padding: 15px 30px;
             font-size: 1.2rem;
@@ -30,14 +41,34 @@
             cursor: pointer;
             margin: 10px;
             width: 200px; /* Ancho fijo para todos los botones */
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 0 #8d6e63; /* Sombra del estilo Ruinas */
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #8d6e63;
+        }
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #8d6e63;
         }
     </style>
 </head>
 <body>
-    <h1>El Tesoro de Barcino</h1>
+    <h1>EL TESORO DE BARCINO</h1>
     <p>Selecciona tu idioma:</p>
-    <button onclick="window.location.href='login_es.html'">Español</button>
-    <button onclick="window.location.href='login_ca.html'">Català</button>
-    <button onclick="window.location.href='login_en.html'">English</button>
+    <button onclick="seleccionarIdioma('es')">Español</button>
+    <button onclick="seleccionarIdioma('ca')">Català</button>
+    <button onclick="seleccionarIdioma('en')">English</button>
+
+    <script>
+        function seleccionarIdioma(idioma) {
+            // Guardamos la elección del idioma en la memoria del navegador
+            localStorage.setItem('idioma_preferido', idioma);
+            
+            // Redirigimos a la página de login del idioma seleccionado
+            window.location.href = `login_${idioma}.html`;
+        }
+    </script>
 </body>
 </html>

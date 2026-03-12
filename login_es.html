@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acceso - El Tesoro de Barcino (ES)</title>
     
-    <script src="config.js"></script>
+    <script src="config.js"></script> <!-- Carga la clave -->
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -93,11 +93,18 @@
         function entrar() {
             const input = document.getElementById('password').value.trim().toUpperCase();
             
-            // Comprobamos contra la variable que viene de config.js
             if (typeof CLAVE_ACTUAL !== 'undefined' && input === CLAVE_ACTUAL) {
-                // Guardamos LA CLAVE EXACTA en el navegador
+                // Guardamos la clave de acceso en localStorage
                 localStorage.setItem('clave_guardada', input);
-               window.location.href = 'tesoro/01-instrucciones.html';
+                
+                // Leemos el idioma preferido guardado desde index.html
+                const idiomaPreferido = localStorage.getItem('idioma_preferido') || 'es'; // 'es' como fallback
+                
+                // Redirigimos a la página de instrucciones específica del idioma
+                // Si el idioma preferido es 'es', no añadimos el sufijo.
+				const rutaDestino = (idiomaPreferido === 'es') ? 'tesoro/01-instrucciones.html' : `tesoro/01-instrucciones_${idiomaPreferido}.html`;
+				window.location.href = rutaDestino;
+
             } else {
                 const errorDiv = document.getElementById('error');
                 errorDiv.style.display = 'block';

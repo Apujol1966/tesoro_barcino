@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parada 2: El Templo Escondido</title>
+    <title>Stop 2: The Hidden Temple</title>
     <link rel="stylesheet" href="tesoro-estilos.css">
     <script src="../config.js"></script>
     
@@ -29,74 +29,74 @@
 </head>
 <body>
 
-    <!-- MODAL DEL GUARDIÁN (Navegación) -->
+    <!-- MODAL DEL GUARDIÁN -->
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
-            <h3>Demuestra tu atención</h3>
-            <p>Antes de mostrarte el camino, responde:</p>
-            <p><em>"¿Qué edificio principal se encontraba en el foro de la colonia?"</em></p>
+            <h3>Show your attention</h3>
+            <p>Before revealing the path, answer:</p>
+            <p><em>"What main building was located in the forum of the colony?"</em></p>
             
-            <input type="text" id="guardian-answer" class="modal-input" placeholder="Escribe tu respuesta">
+            <input type="text" id="guardian-answer" class="modal-input" placeholder="Type your answer">
             
-            <button class="btn" onclick="checkGuardianAnswer()">VALIDAR</button>
-            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancelar</button>
+            <button class="btn" onclick="checkGuardianAnswer()">VALIDATE</button>
+            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancel</button>
             
-            <div id="guardian-error" class="error-msg">Respuesta incorrecta. Lee de nuevo el texto principal.</div>
+            <div id="guardian-error" class="error-msg">Incorrect answer. Read the main text again.</div>
         </div>
     </div>
 
     <!-- MODAL DEL MASTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
-            <h3>Contacta con el Master</h3>
-            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <h3>Contact the Game Master</h3>
+            <p>If you have any technical issues or a doubt the clues can't solve, you can contact me directly.</p>
             <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
-                Teléfono / WhatsApp:<br>
+                Phone / WhatsApp:<br>
                 664 252 723
             </p>
-            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Close</button>
         </div>
     </div>
 
     <header class="header">
-        <h1>Rumbo al Templo</h1>
+        <h1>Towards the Temple</h1>
     </header>
 
     <div class="container">
         
         <div class="imagen-marco">
-            <img src="../recursos/p2-templo.jpg" alt="Callejón del barrio gótico">
+            <img src="../recursos/p2-templo.jpg" alt="Gothic quarter alley">
         </div>
 
         <div class="narrativa">
-            <p style="font-size: 1.2rem;"><strong>¡ESO ES! EL TEMPLO DE AUGUSTO.</strong></p>
+            <p style="font-size: 1.2rem;"><strong>EXACTLY! THE TEMPLE OF AUGUSTUS.</strong></p>
             
             <div style="background-color: rgba(255, 255, 255, 0.08); padding: 15px; border-left: 4px solid var(--color-acento-rojo-quemado); margin: 20px 0; font-size: 0.95rem;">
-                <p style="margin-top: 0;"><strong>🏛️ Archivos de la Ciudad:</strong></p>
-                <p>El Templo de Augusto de Barcino se construyó en el siglo I para el culto imperial a César Augusto, quien dio permiso para fundar la colonia de Barcino.</p>
-                <p style="margin-bottom: 0;">El templo se erigía sobre el Foro, en el actual Barrio Gótico, en el punto más alto del Monte Táber.</p>
+                <p style="margin-top: 0;"><strong>🏛️ City Archives:</strong></p>
+                <p>The Temple of Augustus in Barcino was built in the 1st century for the imperial cult of Caesar Augustus, who gave permission to found the colony of Barcino.</p>
+                <p style="margin-bottom: 0;">The temple was erected over the Forum, in the current Gothic Quarter, at the highest point of Mount Táber.</p>
             </div>
             
-            <p>¡Encuéntralo para seguir el camino que Lucio nos ha dejado!</p>
+            <p>Find it to follow the path that Lucio has left us!</p>
         </div>
 
         <!-- SISTEMA DE AYUDA DE NAVEGACIÓN -->
         <div style="width: 100%; margin-bottom: 20px; text-align: center;">
-            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 Estoy perdido (Pedir Ayuda)</button>
+            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 I'm lost (Ask for Help)</button>
             
             <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px;">
-                <p><strong>Pista de Navegación:</strong></p>
-                <p>Busca el <strong>Carrer Paradís</strong>, en el punto más alto del Barrio Gótico, junto a la Plaça Sant Jaume. Dentro de un pequeño patio interior, encontrarás el corazón de la antigua ciudad.</p>
+                <p><strong>Navigation Clue:</strong></p>
+                <p>Look for <strong>Carrer Paradís</strong>, at the highest point of the Gothic Quarter, next to Plaça Sant Jaume. Inside a small courtyard, you will find the heart of the ancient city.</p>
                 <br>
-                <a href="https://www.google.com/maps/search/?api=1&query=Temple+d%27August+barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VER MAPA</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Temple+d%27August+barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VIEW MAP</a>
             </div>
         </div>
 
         <div class="navigation-controls">
-            <button class="btn" onclick="window.location.href='p2-enigma.html'">HE LLEGADO AL TEMPLO</button>
+            <button class="btn" onclick="window.location.href='p2-enigma_en.html'">I HAVE REACHED THE TEMPLE</button>
             
             <!-- BOTÓN CONTACTA CON EL MASTER -->
-            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Game Master</button>
         </div>
 
     </div>
@@ -104,7 +104,6 @@
     <script src="candado.js"></script>
 
     <script>
-        // Lógica del Guardián
         var modal = document.getElementById('guardian-modal');
         var errorMsg = document.getElementById('guardian-error');
         var input = document.getElementById('guardian-answer');
@@ -119,7 +118,7 @@
 
         function checkGuardianAnswer() {
             let respuesta = input.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            if (respuesta.includes("TEMPLO")) {
+            if (respuesta.includes("TEMPLE")) {
                 closeModal();
                 document.getElementById('pista-texto').style.display = 'block';
                 document.getElementById('btn-pista-trigger').style.display = 'none';
@@ -130,7 +129,6 @@
             }
         }
 
-        // LÓGICA DEL MASTER
         function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
         function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>

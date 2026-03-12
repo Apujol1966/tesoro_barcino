@@ -1,26 +1,22 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parada 1: Las Venas de Piedra</title>
-    <!-- Estilos -->
+    <title>Parada 1: Les Venes de Pedra</title>
     <link rel="stylesheet" href="tesoro-estilos.css">
-    <!-- Configuración -->
     <script src="../config.js"></script>
 
-    <!-- ESTILOS ESPECÍFICOS PARA EL MODAL DEL MASTER -->
     <style>
+        /* ESTILOS DEL MODAL DEL MÀSTER */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            display: none; align-items: center; justify-content: center;
+            background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center;
             z-index: 1000; padding: 20px; box-sizing: border-box;
         }
         .modal-content {
             background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
-            padding: 25px; border-radius: 4px; text-align: center;
-            width: 100%; max-width: 400px;
+            padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px;
             box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
         .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
@@ -28,53 +24,53 @@
 </head>
 <body>
 
-    <!-- MODAL DEL MASTER (Ayuda Directa) -->
+    <!-- MODAL DEL MÀSTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
-            <h3>Contacta con el Master</h3>
-            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <h3>Contacta amb el Màster</h3>
+            <p>Si tens cap incidència tècnica o un dubte que les pistes no resolen, pots contactar directament amb mi.</p>
             <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
-                Teléfono / WhatsApp:<br>
+                Telèfon / WhatsApp:<br>
                 664 252 723
             </p>
-            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Tancar</button>
         </div>
     </div>
 
     <header class="header">
-        <h1>La Prueba de las Venas</h1>
+        <h1>La Prova de les Venes</h1>
     </header>
 
     <div class="container">
         
         <div class="imagen-marco">
-            <img src="../recursos/p1-enigma.jpg" alt="Arcos del acueducto en la muralla">
+            <img src="../recursos/p1-enigma.jpg" alt="Arcs de l'aqüeducte a la muralla">
         </div>
 
         <div class="narrativa">
-            <p><strong>Demuestra que estás aquí.</strong></p>
-            <p>Lucio escribió:</p>
-            <p style="font-style: italic;">"La sangre de la ciudad (el agua) entraba por estas venas de piedra. Si de verdad has seguido mis pasos, alza la vista hacia la muralla, junto a la torre de defensa."</p>
-            <p><strong>¿Cuántos arcos del acueducto reconstruido puedes ver ahí arriba?</strong></p>
+            <p><strong>Demostra que ets aquí.</strong></p>
+            <p>Luci va escriure:</p>
+            <p style="font-style: italic;">"La sang de la ciutat (l'aigua) entrava per aquestes venes de pedra. Si de debò has seguit els meus passos, alça la vista cap a la muralla, al costat de la torre de defensa."</p>
+            <p><strong>Quants arcs de l'aqüeducte reconstruït pots veure allà dalt?</strong></p>
         </div>
 
         <div class="input-group">
-            <input type="text" id="respuesta" placeholder="Escribe el número...">
+            <input type="text" id="respuesta" placeholder="Escriu el número...">
         </div>
 
         <div class="navigation-controls">
-            <button class="btn" onclick="comprobarRespuesta()">COMPROBAR</button>
+            <button class="btn" onclick="comprobarRespuesta()">COMPROVAR</button>
             
-            <!-- BOTÓN CONTACTA CON EL MASTER -->
-            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+            <!-- BOTÓN MÀSTER -->
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta amb el Màster</button>
         </div>
 
-        <div id="mensaje-error" class="feedback error" style="display: none;">Ese no es el número correcto. Mira bien arriba.</div>
+        <div id="mensaje-error" class="feedback error" style="display: none;">Aquest no és el número correcte. Mira bé a dalt.</div>
 
         <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
         
         <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
-            <strong>Pista:</strong> No cuentes toda la muralla. Solo los arcos semicirculares que salen de la torre. Y míralo desde todos los ángulos.
+            <strong>Pista:</strong> No comptis tota la muralla. Només els arcs semicirculars que surten de la torre. I mira-ho des de tots els angles.
         </div>
         
     </div>
@@ -90,9 +86,10 @@
             
             let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-            // SOLUCIÓN: 2 o DOS
-            if (respuestaLimpia === "2" || respuestaLimpia === "DOS" || respuestaLimpia === "DOS ARCOS") {
-                window.location.href = 'p1-recompensa.html';
+            // SOLUCIÓN
+            if (respuestaLimpia === "2" || respuestaLimpia === "DOS" || respuestaLimpia === "DOS ARCS") {
+                // Va al siguiente archivo en catalán
+                window.location.href = 'p1-recompensa_ca.html';
             } else {
                 intentos++;
                 feedback.style.display = 'block';
@@ -111,7 +108,7 @@
             document.getElementById('btn-pista').style.display = 'none';
         }
 
-        // LÓGICA DEL MASTER
+        // LÒGICA DEL MÀSTER
         function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
         function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>

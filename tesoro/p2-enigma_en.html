@@ -1,26 +1,21 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parada 1: Las Venas de Piedra</title>
-    <!-- Estilos -->
+    <title>Stop 2: The Summit</title>
     <link rel="stylesheet" href="tesoro-estilos.css">
-    <!-- Configuración -->
     <script src="../config.js"></script>
 
-    <!-- ESTILOS ESPECÍFICOS PARA EL MODAL DEL MASTER -->
     <style>
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            display: none; align-items: center; justify-content: center;
+            background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center;
             z-index: 1000; padding: 20px; box-sizing: border-box;
         }
         .modal-content {
             background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
-            padding: 25px; border-radius: 4px; text-align: center;
-            width: 100%; max-width: 400px;
+            padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px;
             box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
         .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
@@ -28,53 +23,58 @@
 </head>
 <body>
 
-    <!-- MODAL DEL MASTER (Ayuda Directa) -->
+    <!-- MODAL DEL MASTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
-            <h3>Contacta con el Master</h3>
-            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <h3>Contact the Game Master</h3>
+            <p>If you have any technical issues or a doubt the clues can't solve, you can contact me directly.</p>
             <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
-                Teléfono / WhatsApp:<br>
+                Phone / WhatsApp:<br>
                 664 252 723
             </p>
-            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Close</button>
         </div>
     </div>
 
     <header class="header">
-        <h1>La Prueba de las Venas</h1>
+        <h1>The Summit of Barcino</h1>
     </header>
 
     <div class="container">
         
         <div class="imagen-marco">
-            <img src="../recursos/p1-enigma.jpg" alt="Arcos del acueducto en la muralla">
+            <img src="../recursos/p2-enigma.jpg" alt="Mont Taber Plaque">
         </div>
 
         <div class="narrativa">
-            <p><strong>Demuestra que estás aquí.</strong></p>
-            <p>Lucio escribió:</p>
-            <p style="font-style: italic;">"La sangre de la ciudad (el agua) entraba por estas venas de piedra. Si de verdad has seguido mis pasos, alza la vista hacia la muralla, junto a la torre de defensa."</p>
-            <p><strong>¿Cuántos arcos del acueducto reconstruido puedes ver ahí arriba?</strong></p>
+            <p>You have reached number 10 Carrer Paradís, the headquarters of the <strong>Centre Excursionista de Catalunya</strong>.</p>
+
+            <p>Before going any further, look at the ground at the entrance. That <strong>millstone</strong> is not a simple decoration. It is the <strong>geographical marker</strong> indicating the exact summit of Mount Táber.</p>
+            
+            <p>You are standing on the 'roof' of ancient Barcino, the exact spot where the Romans decided to erect their most important temple.</p>
+            
+            <p>Now, to prove you are here, look at the metal plaque on the wall.</p>
+            
+            <p><strong>What exact height (in meters) does the plaque indicate we are at?</strong></p>
         </div>
 
         <div class="input-group">
-            <input type="text" id="respuesta" placeholder="Escribe el número...">
+            <input type="text" id="respuesta" placeholder="Ex: 10,5">
         </div>
 
         <div class="navigation-controls">
-            <button class="btn" onclick="comprobarRespuesta()">COMPROBAR</button>
+            <button class="btn" onclick="comprobarRespuesta()">CHECK HEIGHT</button>
             
             <!-- BOTÓN CONTACTA CON EL MASTER -->
-            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Game Master</button>
         </div>
 
-        <div id="mensaje-error" class="feedback error" style="display: none;">Ese no es el número correcto. Mira bien arriba.</div>
+        <div id="mensaje-error" class="feedback error" style="display: none;">That is not the correct height. Look closely at the numbers.</div>
 
-        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
+        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 HINT</button>
         
         <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
-            <strong>Pista:</strong> No cuentes toda la muralla. Solo los arcos semicirculares que salen de la torre. Y míralo desde todos los ángulos.
+            <strong>Hint:</strong> Look for an oval metal plaque on the entrance wall. The number has a decimal comma (or dot).
         </div>
         
     </div>
@@ -88,11 +88,10 @@
             let input = document.getElementById('respuesta').value;
             let feedback = document.getElementById('mensaje-error');
             
-            let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let respuestaLimpia = input.toLowerCase().trim().replace('m', '').replace('mts', '').replace('.', ',').trim();
 
-            // SOLUCIÓN: 2 o DOS
-            if (respuestaLimpia === "2" || respuestaLimpia === "DOS" || respuestaLimpia === "DOS ARCOS") {
-                window.location.href = 'p1-recompensa.html';
+            if (respuestaLimpia === "16,9" || respuestaLimpia === "16,90") {
+                window.location.href = 'p2-recompensa_en.html';
             } else {
                 intentos++;
                 feedback.style.display = 'block';
@@ -111,7 +110,6 @@
             document.getElementById('btn-pista').style.display = 'none';
         }
 
-        // LÓGICA DEL MASTER
         function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
         function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>

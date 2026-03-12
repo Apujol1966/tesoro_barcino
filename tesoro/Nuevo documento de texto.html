@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacia el Palacio</title>
+    <title>Parada 3: El Cofre</title>
     <!-- Estilos -->
     <link rel="stylesheet" href="tesoro-estilos.css">
     <!-- Configuración -->
@@ -12,32 +12,93 @@
 <body>
 
     <header class="header">
-        <h1>El Reflejo de la Ciudad</h1>
+        <h1>El Cofre de la Muralla</h1>
     </header>
 
     <div class="container">
         
         <div class="imagen-marco">
-            <!-- Foto de la Baixada de Santa Clara hacia Plaça del Rei -->
-            <img src="../recursos/p3-camino.jpg" alt="Baixada de Santa Clara">
+            <!-- FOTO: El código Pigpen y la Clave -->
+            <img src="../recursos/p3-pigpen.jpg" alt="Código de símbolos y clave de decodificación">
         </div>
 
         <div class="narrativa">
-            <p><em>"Conforme bajes caminando por las piedras de la estrecha <strong>Baixada de Santa Clara</strong>, a tu izquierda se alzarán los muros que guardan la memoria de los reyes."</em></p>
+            <p><em>"Si habéis llegado al punto exacto, el reflejo de la ciudad os hablará."</em></p>
             
-            <p><em>"De frente, imponente <strong>hierro</strong> encontrarás, y sólo si miras a través de su ojo serás tú el que verás."</em></p>
+            <p><em>"Lo que tenéis ante vosotros es una parte de la muralla de Barcino. He escondido un pequeño cofre, que contiene la siguiente prueba, entre sus piedras..."</em></p>
             
-            <p><em>"Deberás mirar desde dónde aún queda algo tan antiguo como yo. Ahora que sabes dónde mirar, la siguiente pista podrás encontrar."</em></p>
+            <p><em>"Para abrirlo necesitarás contar desde el lugar que hace de espejo de la plaza..."</em></p>
+            
+            <ul style="list-style-type: none; padding-left: 0; font-style: italic;">
+                <li>- ¿Cuántas campanas puedes ver?</li>
+                <li>- ¿Cuántas gárgolas puedes contar en el edificio donde se guardan los documentos de Aragón?</li>
+                <li>- ¿Cuántos ángeles hacen falta para sostener el escudo en una esquina?</li>
+                <li>- ¿Cuántas estatuas coronan la catedral?</li>
+                <li>- ¿Cuántas fuentes dan agua a la plaza?</li>
+            </ul>
+
+            <p><em>"Si sois capaces de verlo todo, podréis leer mi mensaje. Utiliza la <strong>Opción II</strong> de mis códigos y encuentra el destino que habéis descifrado."</em></p>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="respuesta" placeholder="¿Cuál es el destino descifrado?">
         </div>
 
         <div class="navigation-controls">
-            <!-- Botón para ir al Enigma de la Plaza -->
-            <button class="btn" onclick="window.location.href='p3-enigma.html'">HE LLEGADO A LA PLAZA</button>
+            <button class="btn" onclick="comprobarRespuesta()">IR AL DESTINO</button>
         </div>
 
+        <div id="mensaje-error" class="feedback error" style="display: none;">Destino incorrecto. Revisa bien los símbolos y la clave.</div>
+
+        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
+        
+        <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
+            <strong>Pista:</strong> Fíjate en las líneas que rodean a cada letra en la clave. <br>
+            El símbolo <strong>┌°</strong> (con punto) corresponde a la letra <strong>P</strong>.<br>
+            El resultado es el nombre de una plaza cercana.
+        </div>
+        
     </div>
 
     <!-- Candado -->
     <script src="candado.js"></script>
+
+    <script>
+        let intentos = 0;
+
+        function comprobarRespuesta() {
+            let input = document.getElementById('respuesta').value;
+            let feedback = document.getElementById('mensaje-error');
+            
+            // Normalizar
+            let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            // SOLUCIÓN: PLAZA SANT MIQUEL
+            if (respuestaLimpia === "PLAZA SANT MIQUEL" || 
+                respuestaLimpia === "PLACA SANT MIQUEL" || 
+                respuestaLimpia === "SANT MIQUEL") {
+                
+                // Correcto: Vamos a la recompensa
+                window.location.href = 'p3-recompensa.html';
+                
+            } else {
+                intentos++;
+                feedback.style.display = 'block';
+                
+                let inputField = document.getElementById('respuesta');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+
+                if (intentos >= 3) {
+                    document.getElementById('btn-pista').style.display = 'inline-block';
+                }
+            }
+        }
+
+        function mostrarPista() {
+            document.getElementById('texto-pista').style.display = 'block';
+            document.getElementById('btn-pista').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

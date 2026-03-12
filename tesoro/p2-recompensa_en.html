@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Corazón del Templo</title>
+    <title>The Heart of the Temple</title>
     <link rel="stylesheet" href="tesoro-estilos.css">
     <script src="../config.js"></script>
 
@@ -31,74 +31,74 @@
     <!-- MODAL DEL GUARDIÁN -->
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
-            <h3>Demuestra tu atención</h3>
-            <p>Lucio habla de una "viajera". ¿De qué material crees que está hecha?</p>
-            <input type="text" id="guardian-answer" class="modal-input" placeholder="Escribe el material">
-            <button class="btn" onclick="checkGuardianAnswer()">VALIDAR</button>
-            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancelar</button>
-            <div id="guardian-error" class="error-msg">Incorrecto. Mira lo que tienes delante.</div>
+            <h3>Show your attention</h3>
+            <p>Lucio speaks of a "traveler". What material do you think it is made of?</p>
+            <input type="text" id="guardian-answer" class="modal-input" placeholder="Type the material">
+            <button class="btn" onclick="checkGuardianAnswer()">VALIDATE</button>
+            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancel</button>
+            <div id="guardian-error" class="error-msg">Incorrect. Look at what is in front of you.</div>
         </div>
     </div>
 
     <!-- MODAL DEL MASTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
-            <h3>Contacta con el Master</h3>
-            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <h3>Contact the Game Master</h3>
+            <p>If you have any technical issues or a doubt the clues can't solve, you can contact me directly.</p>
             <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
-                Teléfono / WhatsApp:<br>
+                Phone / WhatsApp:<br>
                 664 252 723
             </p>
-            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Close</button>
         </div>
     </div>
 
     <header class="header">
-        <h1>El Corazón del Templo</h1>
+        <h1>The Heart of the Temple</h1>
     </header>
 
     <div class="container">
         
         <div class="imagen-marco">
-            <img src="../recursos/p2-recompensa.jpg" alt="Columnas del Templo de Augusto">
+            <img src="../recursos/p2-recompensa.jpg" alt="Columns of the Temple of Augustus">
         </div>
 
         <div class="narrativa">
-            <p>Sigue adelante, cruza el vestíbulo y contempla por fin lo que he protegido: los últimos vestigios del Templo de Augusto.</p>
+            <p>Go ahead, cross the hall and behold at last what I have protected: the final vestiges of the Temple of Augustus.</p>
 
             <div style="text-align:center; margin: 15px 0;">
-                <p style="font-size: 0.9rem;"><em>(Si está cerrado, no te preocupes)</em></p>
-                <a href="pista-cerrado.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem;">
-                    Ver el interior
+                <p style="font-size: 0.9rem;"><em>(If it's closed, do not worry)</em></p>
+                <a href="pista-cerrado_en.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem;">
+                    See the inside
                 </a>
             </div>
 
             <!-- FRAGMENTO DE LA CARTA (COMILLAS AGRUPADAS) -->
             <div style="border-top: 1px solid var(--color-acento-tierra); margin-top: 20px; padding-top: 20px; font-style: italic;">
-                <p>"Si lees estas palabras allí donde debes, es que mi mensaje has sabido escuchar.</p>
-                <p>Ahora, para seguir el camino, deberás a una viajera imitar.</p>
-                <p>Para conocer a la viajera, una pista te entrego. Resuélvela y sigue su sendero.</p>
-                <p style="font-style: normal;"><strong>¿Dónde estuve cuando mi cuerpo estuvo entero?</strong>"</p>
+                <p>"If you read these words where you must, you have known how to listen to my message.</p>
+                <p>Now, to follow the path, you must imitate a traveler.</p>
+                <p>To know the traveler, I give you a clue. Solve it and follow its path.</p>
+                <p style="font-style: normal;"><strong>Where was I when my body was whole?</strong>"</p>
             </div>
         </div>
 
         <div style="width: 100%; margin-bottom: 20px; text-align: center;">
-            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 No entiendo el acertijo (Ayuda)</button>
+            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 I don't understand the riddle (Help)</button>
             
             <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px;">
-                <p><strong>Pista del Historiador:</strong></p>
-                <p>La "viajera" es una de las columnas que tienes delante. Se derrumbó y fue trasladada a la <strong>Plaça del Rei</strong> en la Edad Media, donde permaneció siglos hasta volver aquí.</p>
-                <p>Lucio te está diciendo que vayas allí... pero el siguiente paso de la carta te guiará con más detalle en la próxima pantalla.</p>
+                <p><strong>Historian's Clue:</strong></p>
+                <p>The "traveler" is one of the columns in front of you. It collapsed and was moved to <strong>Plaça del Rei</strong> in the Middle Ages, remaining there for centuries until it returned here.</p>
+                <p>Lucio is telling you to go there... but the next step of the letter will guide you in more detail on the next screen.</p>
                 <br>
-                <a href="https://www.google.com/maps/search/?api=1&query=Plaça+del+Rei+Barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VER MAPA (Origen de la Viajera)</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Plaça+del+Rei+Barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VIEW MAP (Origin of the Traveler)</a>
             </div>
         </div>
 
         <div class="navigation-controls">
-            <button class="btn" onclick="window.location.href='p3-navegacion.html'">CONTINUAR</button>
+            <button class="btn" onclick="window.location.href='p3-navegacion_en.html'">CONTINUE</button>
             
             <!-- BOTÓN CONTACTA CON EL MASTER -->
-            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Game Master</button>
         </div>
 
     </div>
@@ -106,7 +106,6 @@
     <script src="candado.js"></script>
 
     <script>
-        // LÓGICA DEL GUARDIÁN
         var modal = document.getElementById('guardian-modal');
         var errorMsg = document.getElementById('guardian-error');
         var input = document.getElementById('guardian-answer');
@@ -125,7 +124,8 @@
         function checkGuardianAnswer() {
             let respuesta = input.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             
-            if (respuesta.includes("PIEDRA") || respuesta.includes("MARMOL")) {
+            // RESPUESTA: STONE / MARBLE (PIEDRA o MÁRMOL)
+            if (respuesta.includes("STONE") || respuesta.includes("MARBLE")) {
                 closeModal();
                 document.getElementById('pista-texto').style.display = 'block';
                 document.getElementById('btn-pista-trigger').style.display = 'none';
@@ -136,7 +136,6 @@
             }
         }
 
-        // LÓGICA DEL MASTER
         function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
         function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>

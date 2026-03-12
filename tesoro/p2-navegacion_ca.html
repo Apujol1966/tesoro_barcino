@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parada 2: El Templo Escondido</title>
+    <title>Parada 2: El Temple Amagat</title>
     <link rel="stylesheet" href="tesoro-estilos.css">
     <script src="../config.js"></script>
     
@@ -29,74 +29,74 @@
 </head>
 <body>
 
-    <!-- MODAL DEL GUARDIÁN (Navegación) -->
+    <!-- MODAL DEL GUARDIÀ -->
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
-            <h3>Demuestra tu atención</h3>
-            <p>Antes de mostrarte el camino, responde:</p>
-            <p><em>"¿Qué edificio principal se encontraba en el foro de la colonia?"</em></p>
+            <h3>Demostra la teva atenció</h3>
+            <p>Abans de mostrar-te el camí, respon:</p>
+            <p><em>"Quin edifici principal es trobava al fòrum de la colònia?"</em></p>
             
-            <input type="text" id="guardian-answer" class="modal-input" placeholder="Escribe tu respuesta">
+            <input type="text" id="guardian-answer" class="modal-input" placeholder="Escriu la teva resposta">
             
             <button class="btn" onclick="checkGuardianAnswer()">VALIDAR</button>
-            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancelar</button>
+            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancel·lar</button>
             
-            <div id="guardian-error" class="error-msg">Respuesta incorrecta. Lee de nuevo el texto principal.</div>
+            <div id="guardian-error" class="error-msg">Resposta incorrecta. Llegeix de nou el text principal.</div>
         </div>
     </div>
 
-    <!-- MODAL DEL MASTER -->
+    <!-- MODAL DEL MÀSTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
-            <h3>Contacta con el Master</h3>
-            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <h3>Contacta amb el Màster</h3>
+            <p>Si tens cap incidència tècnica o un dubte que les pistes no resolen, pots contactar directament amb mi.</p>
             <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
-                Teléfono / WhatsApp:<br>
+                Telèfon / WhatsApp:<br>
                 664 252 723
             </p>
-            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Tancar</button>
         </div>
     </div>
 
     <header class="header">
-        <h1>Rumbo al Templo</h1>
+        <h1>Cap al Temple</h1>
     </header>
 
     <div class="container">
         
         <div class="imagen-marco">
-            <img src="../recursos/p2-templo.jpg" alt="Callejón del barrio gótico">
+            <img src="../recursos/p2-templo.jpg" alt="Carreró del barri gòtic">
         </div>
 
         <div class="narrativa">
-            <p style="font-size: 1.2rem;"><strong>¡ESO ES! EL TEMPLO DE AUGUSTO.</strong></p>
+            <p style="font-size: 1.2rem;"><strong>EXACTE! EL TEMPLE D'AUGUST.</strong></p>
             
             <div style="background-color: rgba(255, 255, 255, 0.08); padding: 15px; border-left: 4px solid var(--color-acento-rojo-quemado); margin: 20px 0; font-size: 0.95rem;">
-                <p style="margin-top: 0;"><strong>🏛️ Archivos de la Ciudad:</strong></p>
-                <p>El Templo de Augusto de Barcino se construyó en el siglo I para el culto imperial a César Augusto, quien dio permiso para fundar la colonia de Barcino.</p>
-                <p style="margin-bottom: 0;">El templo se erigía sobre el Foro, en el actual Barrio Gótico, en el punto más alto del Monte Táber.</p>
+                <p style="margin-top: 0;"><strong>🏛️ Arxius de la Ciutat:</strong></p>
+                <p>El Temple d'August de Barcino es va construir al segle I per al culte imperial a Cèsar August, qui va donar permís per fundar la colònia de Barcino.</p>
+                <p style="margin-bottom: 0;">El temple s'erigia sobre el Fòrum, a l'actual Barri Gòtic, en el punt més alt del Mont Tàber.</p>
             </div>
             
-            <p>¡Encuéntralo para seguir el camino que Lucio nos ha dejado!</p>
+            <p>Troba'l per seguir el camí que Luci ens ha deixat!</p>
         </div>
 
-        <!-- SISTEMA DE AYUDA DE NAVEGACIÓN -->
+        <!-- SISTEMA D'AJUDA DE NAVEGACIÓ -->
         <div style="width: 100%; margin-bottom: 20px; text-align: center;">
-            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 Estoy perdido (Pedir Ayuda)</button>
+            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 Estic perdut (Demanar Ajuda)</button>
             
             <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px;">
-                <p><strong>Pista de Navegación:</strong></p>
-                <p>Busca el <strong>Carrer Paradís</strong>, en el punto más alto del Barrio Gótico, junto a la Plaça Sant Jaume. Dentro de un pequeño patio interior, encontrarás el corazón de la antigua ciudad.</p>
+                <p><strong>Pista de Navegació:</strong></p>
+                <p>Busca el <strong>Carrer Paradís</strong>, al punt més alt del Barri Gòtic, al costat de la Plaça Sant Jaume. Dins d'un petit pati interior, trobaràs el cor de l'antiga ciutat.</p>
                 <br>
-                <a href="https://www.google.com/maps/search/?api=1&query=Temple+d%27August+barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VER MAPA</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Temple+d%27August+barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VEURE MAPA</a>
             </div>
         </div>
 
         <div class="navigation-controls">
-            <button class="btn" onclick="window.location.href='p2-enigma.html'">HE LLEGADO AL TEMPLO</button>
+            <button class="btn" onclick="window.location.href='p2-enigma_ca.html'">HE ARRIBAT AL TEMPLE</button>
             
-            <!-- BOTÓN CONTACTA CON EL MASTER -->
-            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+            <!-- BOTÓ CONTACTA AMB EL MÀSTER -->
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta amb el Màster</button>
         </div>
 
     </div>
@@ -104,7 +104,6 @@
     <script src="candado.js"></script>
 
     <script>
-        // Lógica del Guardián
         var modal = document.getElementById('guardian-modal');
         var errorMsg = document.getElementById('guardian-error');
         var input = document.getElementById('guardian-answer');
@@ -118,8 +117,8 @@
         function closeModal() { modal.style.display = 'none'; }
 
         function checkGuardianAnswer() {
-            let respuesta = input.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            if (respuesta.includes("TEMPLO")) {
+            let resposta = input.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            if (resposta.includes("TEMPLE") || resposta.includes("TEMPLO")) {
                 closeModal();
                 document.getElementById('pista-texto').style.display = 'block';
                 document.getElementById('btn-pista-trigger').style.display = 'none';
@@ -130,7 +129,6 @@
             }
         }
 
-        // LÓGICA DEL MASTER
         function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
         function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
