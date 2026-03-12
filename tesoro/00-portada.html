@@ -47,6 +47,8 @@
         <div class="navigation-controls">
             <!-- Al pulsar, vamos a la Parada 1 -->
             <button class="btn" onclick="empezarJuego()">ACEPTO EL RETO</button>
+             <!-- Botón para abrir el modal de ayuda -->
+             <button class="hint-btn" onclick="openHelpModal()">🆘 Contacta con el Master</button>
         </div>
 
     </div>
@@ -72,11 +74,7 @@
             window.location.href = primeraParada;
         }
     </script>
-      <!-- === BOTÓN Y MODAL DE AYUDA DIRECTA (AÑADIDO) === -->
-    <div id="help-button" onclick="openHelpModal()">
-        🆘
-    </div>
-
+       <!-- === MODAL DE AYUDA DIRECTA (AÑADIDO) === -->
     <div id="help-modal" class="modal-overlay" onclick="closeHelpModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h3>¿Necesitas Ayuda?</h3>
