@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Heart of the Temple</title>
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <script src="../config.js"></script>
+
+    <style>
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center;
+            z-index: 1000; padding: 20px; box-sizing: border-box;
+        }
+        .modal-content {
+            background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
+            padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+        .modal-input {
+            width: 100%; padding: 10px; margin: 15px 0; background: #1a1a1a;
+            border: 1px solid #555; color: #fff; text-align: center; font-size: 1.1rem; box-sizing: border-box;
+        }
+        .error-msg { color: #ff6b6b; font-size: 0.9rem; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL GUARDIÀN -->
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Show your attention</h3>
+            <p>Lucio speaks of a "traveler". What material do you think it is made of?</p>
+            <input type="text" id="guardian-answer" class="modal-input" placeholder="Type the material">
+            <button class="btn" onclick="checkGuardianAnswer()">VALIDATE</button>
+            <button class="hint-btn" onclick="closeGuardianModal()" style="margin-top: 10px; border: none;">Cancel</button>
+            <div id="guardian-error" class="error-msg">Incorrect. Look at what is in front of you.</div>
+        </div>
+    </div>
+
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contact the Game Master</h3>
+            <p>If you have any technical issues or a doubt the clues can't solve, you can contact me directly.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Phone / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Close</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>The Heart of the Temple</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p2-recompensa.jpg" alt="Columns of the Temple of Augustus">
+        </div>
+
+        <div class="narrativa">
+            <p style="font-size: 1.2rem;"><strong>Exactly! 16.9 meters.</strong></p>
+            
+            <p>Go ahead, cross the hall and behold at last what I have protected: the final vestiges of the Temple of Augustus.</p>
+
+            <div style="text-align:center; margin: 15px 0;">
+                <p style="font-size: 0.9rem;"><em>(If it's closed, do not worry)</em></p>
+                <!-- Enlace explícito a pista-cerrado_en.html -->
+                <a href="pista-cerrado_en.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem; text-decoration: none;">
+                    See the inside
+                </a>
+            </div>
+
+            <!-- FRAGMENTO DE LA CARTA (COMILLAS AGRUPADAS) -->
+            <div class="narrativa" style="background: none; border: none; box-shadow: none; padding: 0; margin: 20px 0 0 0; border-top: 1px solid var(--color-acento-tierra); padding-top: 20px; font-style: italic;">
+                <p>"If you read these words where you must, you have known how to listen to my message.</p>
+                <p>Now, to follow the path, you must imitate a traveler.</p>
+                <p>To know the traveler, I give you a clue. Solve it and follow its path.</p>
+                <p style="font-style: normal;"><strong>Where was I when my body was whole?</strong>"</p>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="respuesta" placeholder="Describe its location...">
+        </div>
+
+        <div class="navigation-controls">
+            <button class="btn" onclick="comprobarRespuesta()">CONTINUE</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Game Master</button>
+        </div>
+
+        <div id="mensaje-error" class="feedback error" style="display: none;">Incorrect answer. Think about its history.</div>
+
+        <div style="width: 100%; margin-bottom: 20px; text-align: center; margin-top: 15px;">
+            <button class="hint-btn" onclick="openGuardianModal()" id="btn-pista-trigger">📍 I don't understand the riddle (Help)</button>
+            
+            <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px;">
+                <p><strong>Historian's Clue:</strong></p>
+                <p>The "traveler" is one of the columns in front of you. It collapsed and was moved to <strong>Plaça del Rei</strong> in the Middle Ages, remaining there for centuries until it returned here.</p>
+                <p>Lucio is telling you to go there... but the next step of the letter will guide you in more detail on the next screen.</p>
+                <br>
+                <a href="https://www.google.com/maps/search/?api=1&query=Plaça+del+Rei+Barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VIEW MAP (Origin of the Traveler)</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="candado.js"></script>
+
+    <script>
+        let intentos = 0;
+
+        function comprobarRespuesta() {
+            let input = document.getElementById('respuesta').value;
+            let feedback = document.getElementById('mensaje-error');
+            
+            let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            if (respuestaLimpia.includes("PLAÇA DEL REI") || respuestaLimpia.includes("PLAZA DEL REY") || respuestaLimpia.includes("KING'S SQUARE")) {
+                avanzarA('p3-navegacion');
+            } else {
+                intentos++;
+                feedback.style.display = 'block';
+                let inputField = document.getElementById('respuesta');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+
+                if (intentos >= 3) {
+                    document.getElementById('btn-pista-trigger').style.display = 'inline-block';
+                }
+            }
+        }
+
+        var gModal = document.getElementById('guardian-modal');
+        var gErrorMsg = document.getElementById('guardian-error');
+        var gInput = document.getElementById('guardian-answer');
+
+        function openGuardianModal() { gModal.style.display = 'flex'; gInput.value = ""; gErrorMsg.style.display = 'none'; gInput.focus(); }
+        function closeGuardianModal() { gModal.style.display = 'none'; }
+
+        function checkGuardianAnswer() {
+            let respuesta = gInput.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
+            if (respuesta.includes("STONE") || respuesta.includes("MARBLE")) {
+                closeGuardianModal();
+                document.getElementById('pista-texto').style.display = 'block';
+                document.getElementById('btn-pista-trigger').style.display = 'none';
+            } else {
+                gErrorMsg.style.display = 'block';
+                gInput.style.borderColor = "#ff6b6b";
+                setTimeout(() => gInput.style.borderColor = "#555", 500);
+            }
+        }
+    </script>
+</body>
+</html>

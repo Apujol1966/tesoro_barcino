@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cap al Palau</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
+    <script src="../config.js"></script>
+    
+    <style>
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center;
+            z-index: 1000; padding: 20px; box-sizing: border-box;
+        }
+        .modal-content {
+            background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
+            padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL MÀSTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta amb el Màster</h3>
+            <p>Si tens cap incidència tècnica o un dubte que les pistes no resolen, pots contactar directament amb mi.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Telèfon / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Tancar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>El Reflex de la Ciutat</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <!-- Foto de la Baixada de Santa Clara cap a Plaça del Rei -->
+            <img src="../recursos/p3-camino.jpg" alt="Baixada de Santa Clara">
+        </div>
+
+        <!-- TEXT DE LA CARTA (Cometes agrupades) -->
+        <div class="narrativa" style="font-style: italic;">
+            <p>"A mesura que baixis caminant per les pedres de l'estreta <strong>Baixada de Santa Clara</strong>, a la teva esquerra s'alçaran els murs que guarden la memòria dels reis.</p>
+            
+            <p>De cara, imponent <strong>ferro</strong> trobaràs, i només si mires a través del seu ull seràs tu qui veuràs.</p>
+            
+            <p>Hauràs de mirar des d'on encara queda una cosa tan antiga com jo. Ara que saps on mirar, la següent pista podràs trobar."</p>
+        </div>
+
+        <div class="navigation-controls">
+            <!-- Botó per anar a l'Enigma usant avançarA per guardar l'idioma i el progrés -->
+            <button class="btn" onclick="avanzarA('p3-enigma')">HE ARRIBAT A LA PLAÇA</button>
+            
+            <!-- BOTÓ CONTACTA AMB EL MÀSTER -->
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta amb el Màster</button>
+        </div>
+
+    </div>
+
+    <!-- Candado -->
+    <script src="candado.js"></script>
+
+    <script>
+        // LÒGICA DEL MÀSTER
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>
