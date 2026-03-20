@@ -19,10 +19,7 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
         .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
-        .modal-input {
-            width: 100%; padding: 10px; margin: 15px 0; background: #1a1a1a;
-            border: 1px solid #555; color: #fff; text-align: center; font-size: 1.1rem; box-sizing: border-box;
-        }
+        .modal-input { width: 100%; padding: 10px; margin: 15px 0; background: #1a1a1a; border: 1px solid #555; color: #fff; text-align: center; font-size: 1.1rem; box-sizing: border-box; }
         .error-msg { color: #ff6b6b; font-size: 0.9rem; margin-top: 10px; display: none; }
     </style>
 </head>
@@ -35,7 +32,7 @@
             <p>Lucio habla de una "viajera". ¿De qué material crees que está hecha?</p>
             <input type="text" id="guardian-answer" class="modal-input" placeholder="Escribe el material">
             <button class="btn" onclick="checkGuardianAnswer()">VALIDAR</button>
-            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancelar</button>
+            <button class="hint-btn" onclick="closeGuardianModal()" style="margin-top: 10px; border: none;">Cancelar</button>
             <div id="guardian-error" class="error-msg">Incorrecto. Mira lo que tienes delante.</div>
         </div>
     </div>
@@ -68,7 +65,8 @@
 
             <div style="text-align:center; margin: 15px 0;">
                 <p style="font-size: 0.9rem;"><em>(Si está cerrado, no te preocupes)</em></p>
-                <a href="pista-cerrado.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem;">
+                <!-- OJO: A pista-cerrado.html no le aplicamos avanzarA() porque es un enlace secundario y queremos que al volver atrás siga en p2-recompensa -->
+                <a href="pista-cerrado.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem; text-decoration: none;">
                     Ver el interior
                 </a>
             </div>
@@ -83,7 +81,7 @@
         </div>
 
         <div style="width: 100%; margin-bottom: 20px; text-align: center;">
-            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 No entiendo el acertijo (Ayuda)</button>
+            <button class="hint-btn" onclick="openGuardianModal()" id="btn-pista-trigger">📍 No entiendo el acertijo (Ayuda)</button>
             
             <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px;">
                 <p><strong>Pista del Historiador:</strong></p>
@@ -95,9 +93,9 @@
         </div>
 
         <div class="navigation-controls">
-            <button class="btn" onclick="window.location.href='p3-navegacion.html'">CONTINUAR</button>
+            <!-- CAMBIO AQUÍ: GUARDAMOS PROGRESO -->
+            <button class="btn" onclick="avanzarA('p3-navegacion')">CONTINUAR</button>
             
-            <!-- BOTÓN CONTACTA CON EL MASTER -->
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
         </div>
 
@@ -106,39 +104,26 @@
     <script src="candado.js"></script>
 
     <script>
-        // LÓGICA DEL GUARDIÁN
-        var modal = document.getElementById('guardian-modal');
-        var errorMsg = document.getElementById('guardian-error');
-        var input = document.getElementById('guardian-answer');
+        var gModal = document.getElementById('guardian-modal');
+        var gErrorMsg = document.getElementById('guardian-error');
+        var gInput = document.getElementById('guardian-answer');
 
-        function openModal() {
-            modal.style.display = 'flex';
-            input.value = "";
-            errorMsg.style.display = 'none';
-            input.focus();
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
+        function openGuardianModal() { gModal.style.display = 'flex'; gInput.value = ""; gErrorMsg.style.display = 'none'; gInput.focus(); }
+        function closeGuardianModal() { gModal.style.display = 'none'; }
 
         function checkGuardianAnswer() {
-            let respuesta = input.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let respuesta = gInput.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             
             if (respuesta.includes("PIEDRA") || respuesta.includes("MARMOL")) {
-                closeModal();
+                closeGuardianModal();
                 document.getElementById('pista-texto').style.display = 'block';
                 document.getElementById('btn-pista-trigger').style.display = 'none';
             } else {
-                errorMsg.style.display = 'block';
-                input.style.borderColor = "#ff6b6b";
-                setTimeout(() => input.style.borderColor = "#555", 500);
+                gErrorMsg.style.display = 'block';
+                gInput.style.borderColor = "#ff6b6b";
+                setTimeout(() => gInput.style.borderColor = "#555", 500);
             }
         }
-
-        // LÓGICA DEL MASTER
-        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
-        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

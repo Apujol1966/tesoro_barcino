@@ -18,6 +18,7 @@
             background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
             padding: 25px; border-radius: 4px; text-align: center;
             width: 100%; max-width: 400px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
         .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
         .modal-input {
@@ -29,7 +30,7 @@
 </head>
 <body>
 
-    <!-- MODAL DEL GUARDIÁN (Navegación) -->
+    <!-- MODAL DEL GUARDIÁN -->
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h3>Demuestra tu atención</h3>
@@ -39,7 +40,7 @@
             <input type="text" id="guardian-answer" class="modal-input" placeholder="Escribe tu respuesta">
             
             <button class="btn" onclick="checkGuardianAnswer()">VALIDAR</button>
-            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancelar</button>
+            <button class="hint-btn" onclick="closeGuardianModal()" style="margin-top: 10px; border: none;">Cancelar</button>
             
             <div id="guardian-error" class="error-msg">Respuesta incorrecta. Lee de nuevo el texto principal.</div>
         </div>
@@ -80,9 +81,8 @@
             <p>¡Encuéntralo para seguir el camino que Lucio nos ha dejado!</p>
         </div>
 
-        <!-- SISTEMA DE AYUDA DE NAVEGACIÓN -->
         <div style="width: 100%; margin-bottom: 20px; text-align: center;">
-            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 Estoy perdido (Pedir Ayuda)</button>
+            <button class="hint-btn" onclick="openGuardianModal()" id="btn-pista-trigger">📍 Estoy perdido (Pedir Ayuda)</button>
             
             <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px;">
                 <p><strong>Pista de Navegación:</strong></p>
@@ -93,9 +93,8 @@
         </div>
 
         <div class="navigation-controls">
-            <button class="btn" onclick="window.location.href='p2-enigma.html'">HE LLEGADO AL TEMPLO</button>
-            
-            <!-- BOTÓN CONTACTA CON EL MASTER -->
+            <!-- CAMBIO AQUÍ: GUARDAMOS PROGRESO -->
+            <button class="btn" onclick="avanzarA('p2-enigma')">HE LLEGADO AL TEMPLO</button>
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
         </div>
 
@@ -104,35 +103,25 @@
     <script src="candado.js"></script>
 
     <script>
-        // Lógica del Guardián
-        var modal = document.getElementById('guardian-modal');
-        var errorMsg = document.getElementById('guardian-error');
-        var input = document.getElementById('guardian-answer');
+        var gModal = document.getElementById('guardian-modal');
+        var gErrorMsg = document.getElementById('guardian-error');
+        var gInput = document.getElementById('guardian-answer');
 
-        function openModal() {
-            modal.style.display = 'flex';
-            input.value = "";
-            errorMsg.style.display = 'none';
-            input.focus();
-        }
-        function closeModal() { modal.style.display = 'none'; }
+        function openGuardianModal() { gModal.style.display = 'flex'; gInput.value = ""; gErrorMsg.style.display = 'none'; gInput.focus(); }
+        function closeGuardianModal() { gModal.style.display = 'none'; }
 
         function checkGuardianAnswer() {
-            let respuesta = input.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let respuesta = gInput.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (respuesta.includes("TEMPLO")) {
-                closeModal();
+                closeGuardianModal();
                 document.getElementById('pista-texto').style.display = 'block';
                 document.getElementById('btn-pista-trigger').style.display = 'none';
             } else {
-                errorMsg.style.display = 'block';
-                input.style.borderColor = "#ff6b6b";
-                setTimeout(() => input.style.borderColor = "#555", 500);
+                gErrorMsg.style.display = 'block';
+                gInput.style.borderColor = "#ff6b6b";
+                setTimeout(() => gInput.style.borderColor = "#555", 500);
             }
         }
-
-        // LÓGICA DEL MASTER
-        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
-        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

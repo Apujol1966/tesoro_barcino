@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Corazón Sagrado</title>
-    <!-- Estilos -->
     <link rel="stylesheet" href="tesoro-estilos.css">
-    <!-- Configuración -->
     <script src="../config.js"></script>
 
-    <!-- ESTILOS ESPECÍFICOS PARA EL MODAL DEL MASTER -->
     <style>
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -28,7 +25,6 @@
 </head>
 <body>
 
-    <!-- MODAL DEL MASTER (Ayuda Directa) -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h3>Contacta con el Master</h3>
@@ -66,7 +62,6 @@
             
             <p style="text-align: center; color: var(--color-acento-rojo-quemado);"><strong>B = II &nbsp; | &nbsp; A = I &nbsp; | &nbsp; I = IX</strong></p>
             
-            <!-- Aquí está el cifrado, no lleva comillas porque es un bloque de código suelto -->
             <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 4px; text-align: center; font-family: monospace; font-size: 1.1rem; border: 1px solid var(--color-acento-tierra); letter-spacing: 1px;">
                 I / XXII / VII / XXII / XX / XXI / IX
                 <br><br>
@@ -82,8 +77,6 @@
 
         <div class="navigation-controls">
             <button class="btn" onclick="comprobarRespuesta()">IR AL SIGUIENTE LUGAR</button>
-
-            <!-- BOTÓN CONTACTA CON EL MASTER -->
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
         </div>
 
@@ -108,11 +101,13 @@
             
             let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-            // SOLUCIÓN
             if (respuestaLimpia === "AUGUSTI TEMPLI" || 
                 respuestaLimpia === "AUGUSTITEMPLI" || 
                 respuestaLimpia.includes("TEMPLO DE AUGUSTO")) {
-                window.location.href = 'p2-navegacion.html';
+                
+                // AQUÍ ESTÁ EL CAMBIO PARA GUARDAR PROGRESO
+                avanzarA('p2-navegacion');
+                
             } else {
                 intentos++;
                 feedback.style.display = 'block';
@@ -131,10 +126,6 @@
             document.getElementById('texto-pista').style.display = 'block';
             document.getElementById('btn-pista').style.display = 'none';
         }
-
-        // LÓGICA DEL MASTER
-        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
-        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

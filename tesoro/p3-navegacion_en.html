@@ -48,7 +48,7 @@
             <img src="../recursos/p3-camino.jpg" alt="Baixada de Santa Clara">
         </div>
 
-        <!-- TEXTO DE LA CARTA (Comillas agrupadas) -->
+        <!-- TEXT DE LA CARTA -->
         <div class="narrativa" style="font-style: italic;">
             <p>"As you walk down the stones of the narrow <strong>Baixada de Santa Clara</strong>, to your left will rise the walls that keep the memory of the kings.</p>
             
@@ -58,10 +58,7 @@
         </div>
 
         <div class="navigation-controls">
-            <!-- Botón para ir al Enigma -->
-            <button class="btn" onclick="window.location.href='p3-enigma_en.html'">I HAVE REACHED THE SQUARE</button>
-            
-            <!-- BOTÓN CONTACTA CON EL MASTER -->
+            <button class="btn" onclick="avanzarA('p3-enigma')">I HAVE REACHED THE SQUARE</button>
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Game Master</button>
         </div>
 
@@ -70,10 +67,5 @@
     <!-- Candado -->
     <script src="candado.js"></script>
 
-    <script>
-        // LÓGICA DEL MASTER
-        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
-        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
-    </script>
 </body>
 </html>

@@ -28,14 +28,14 @@
 </head>
 <body>
 
-    <!-- MODAL DEL GUARDIÁN -->
+    <!-- MODAL DEL GUARDIÀN -->
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h3>Show your attention</h3>
             <p>Lucio speaks of a "traveler". What material do you think it is made of?</p>
             <input type="text" id="guardian-answer" class="modal-input" placeholder="Type the material">
             <button class="btn" onclick="checkGuardianAnswer()">VALIDATE</button>
-            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancel</button>
+            <button class="hint-btn" onclick="closeGuardianModal()" style="margin-top: 10px; border: none;">Cancel</button>
             <div id="guardian-error" class="error-msg">Incorrect. Look at what is in front of you.</div>
         </div>
     </div>
@@ -64,16 +64,18 @@
         </div>
 
         <div class="narrativa">
+            <p style="font-size: 1.2rem;"><strong>Exactly! 16.9 meters.</strong></p>
+            
             <p>Go ahead, cross the hall and behold at last what I have protected: the final vestiges of the Temple of Augustus.</p>
 
             <div style="text-align:center; margin: 15px 0;">
                 <p style="font-size: 0.9rem;"><em>(If it's closed, do not worry)</em></p>
-                <a href="pista-cerrado_en.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem;">
+                <a href="pista-cerrado_en.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem; text-decoration: none;">
                     See the inside
                 </a>
             </div>
 
-            <!-- FRAGMENTO DE LA CARTA (COMILLAS AGRUPADAS) -->
+            <!-- FRAGMENTO DE LA CARTA (SIN CAMPO DE TEXTO) -->
             <div style="border-top: 1px solid var(--color-acento-tierra); margin-top: 20px; padding-top: 20px; font-style: italic;">
                 <p>"If you read these words where you must, you have known how to listen to my message.</p>
                 <p>Now, to follow the path, you must imitate a traveler.</p>
@@ -83,7 +85,7 @@
         </div>
 
         <div style="width: 100%; margin-bottom: 20px; text-align: center;">
-            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 I don't understand the riddle (Help)</button>
+            <button class="hint-btn" onclick="openGuardianModal()" id="btn-pista-trigger">📍 I don't understand the riddle (Help)</button>
             
             <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px;">
                 <p><strong>Historian's Clue:</strong></p>
@@ -95,9 +97,8 @@
         </div>
 
         <div class="navigation-controls">
-            <button class="btn" onclick="window.location.href='p3-navegacion_en.html'">CONTINUE</button>
-            
-            <!-- BOTÓN CONTACTA CON EL MASTER -->
+            <!-- AVANZA DIRECTAMENTE SIN CAMPO DE TEXTO -->
+            <button class="btn" onclick="avanzarA('p3-navegacion')">CONTINUE THE SEARCH</button>
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Game Master</button>
         </div>
 
@@ -106,38 +107,26 @@
     <script src="candado.js"></script>
 
     <script>
-        var modal = document.getElementById('guardian-modal');
-        var errorMsg = document.getElementById('guardian-error');
-        var input = document.getElementById('guardian-answer');
+        var gModal = document.getElementById('guardian-modal');
+        var gErrorMsg = document.getElementById('guardian-error');
+        var gInput = document.getElementById('guardian-answer');
 
-        function openModal() {
-            modal.style.display = 'flex';
-            input.value = "";
-            errorMsg.style.display = 'none';
-            input.focus();
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
+        function openGuardianModal() { gModal.style.display = 'flex'; gInput.value = ""; gErrorMsg.style.display = 'none'; gInput.focus(); }
+        function closeGuardianModal() { gModal.style.display = 'none'; }
 
         function checkGuardianAnswer() {
-            let respuesta = input.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let respuesta = gInput.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             
-            // RESPUESTA: STONE / MARBLE (PIEDRA o MÁRMOL)
             if (respuesta.includes("STONE") || respuesta.includes("MARBLE")) {
-                closeModal();
+                closeGuardianModal();
                 document.getElementById('pista-texto').style.display = 'block';
                 document.getElementById('btn-pista-trigger').style.display = 'none';
             } else {
-                errorMsg.style.display = 'block';
-                input.style.borderColor = "#ff6b6b";
-                setTimeout(() => input.style.borderColor = "#555", 500);
+                gErrorMsg.style.display = 'block';
+                gInput.style.borderColor = "#ff6b6b";
+                setTimeout(() => gInput.style.borderColor = "#555", 500);
             }
         }
-
-        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
-        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

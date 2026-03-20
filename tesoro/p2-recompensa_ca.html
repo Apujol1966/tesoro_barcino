@@ -35,7 +35,7 @@
             <p>Luci parla d'una "viatgera". De quin material creus que està feta?</p>
             <input type="text" id="guardian-answer" class="modal-input" placeholder="Escriu el material">
             <button class="btn" onclick="checkGuardianAnswer()">VALIDAR</button>
-            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancel·lar</button>
+            <button class="hint-btn" onclick="closeGuardianModal()" style="margin-top: 10px; border: none;">Cancel·lar</button>
             <div id="guardian-error" class="error-msg">Incorrecte. Mira el que tens davant.</div>
         </div>
     </div>
@@ -64,16 +64,18 @@
         </div>
 
         <div class="narrativa">
+            <p style="font-size: 1.2rem;"><strong>Exacte! 16,9 metres.</strong></p>
+            
             <p>Segueix endavant, creua el vestíbul i contempla per fi el que he protegit: els últims vestigis del Temple d'August.</p>
 
             <div style="text-align:center; margin: 15px 0;">
                 <p style="font-size: 0.9rem;"><em>(Si està tancat, no et preocupis)</em></p>
-                <a href="pista-cerrado_ca.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem;">
+                <a href="pista-cerrado_ca.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem; text-decoration: none;">
                     Veure l'interior
                 </a>
             </div>
 
-            <!-- FRAGMENT DE LA CARTA -->
+            <!-- FRAGMENT DE LA CARTA (SENSE CAMP DE TEXT) -->
             <div style="border-top: 1px solid var(--color-acento-tierra); margin-top: 20px; padding-top: 20px; font-style: italic;">
                 <p>"Si llegeixes aquestes paraules allà on deus, és que el meu missatge has sabut escoltar.</p>
                 <p>Ara, per seguir el camí, hauràs a una viatgera imitar.</p>
@@ -83,7 +85,7 @@
         </div>
 
         <div style="width: 100%; margin-bottom: 20px; text-align: center;">
-            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 No entenc l'enigma (Ajuda)</button>
+            <button class="hint-btn" onclick="openGuardianModal()" id="btn-pista-trigger">📍 No entenc l'enigma (Ajuda)</button>
             
             <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px;">
                 <p><strong>Pista de l'Historiador:</strong></p>
@@ -95,10 +97,8 @@
         </div>
 
         <div class="navigation-controls">
-            <!-- Enllaç a la següent parada en català -->
-            <button class="btn" onclick="window.location.href='p3-navegacion_ca.html'">CONTINUAR</button>
-            
-            <!-- BOTÓ CONTACTA AMB EL MÀSTER -->
+            <!-- AVANÇA DIRECTAMENT SENSE CAMP DE TEXT -->
+            <button class="btn" onclick="avanzarA('p3-navegacion')">CONTINUAR LA CERCA</button>
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta amb el Màster</button>
         </div>
 
@@ -107,34 +107,26 @@
     <script src="candado.js"></script>
 
     <script>
-        var modal = document.getElementById('guardian-modal');
-        var errorMsg = document.getElementById('guardian-error');
-        var input = document.getElementById('guardian-answer');
+        var gModal = document.getElementById('guardian-modal');
+        var gErrorMsg = document.getElementById('guardian-error');
+        var gInput = document.getElementById('guardian-answer');
 
-        function openModal() {
-            modal.style.display = 'flex';
-            input.value = "";
-            errorMsg.style.display = 'none';
-            input.focus();
-        }
-        function closeModal() { modal.style.display = 'none'; }
+        function openGuardianModal() { gModal.style.display = 'flex'; gInput.value = ""; gErrorMsg.style.display = 'none'; gInput.focus(); }
+        function closeGuardianModal() { gModal.style.display = 'none'; }
 
         function checkGuardianAnswer() {
-            let resposta = input.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let resposta = gInput.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             
             if (resposta.includes("PEDRA") || resposta.includes("MARBRE")) {
-                closeModal();
+                closeGuardianModal();
                 document.getElementById('pista-texto').style.display = 'block';
                 document.getElementById('btn-pista-trigger').style.display = 'none';
             } else {
-                errorMsg.style.display = 'block';
-                input.style.borderColor = "#ff6b6b";
-                setTimeout(() => input.style.borderColor = "#555", 500);
+                gErrorMsg.style.display = 'block';
+                gInput.style.borderColor = "#ff6b6b";
+                setTimeout(() => gInput.style.borderColor = "#555", 500);
             }
         }
-
-        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
-        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

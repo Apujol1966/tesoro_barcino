@@ -23,7 +23,6 @@
 </head>
 <body>
 
-    <!-- MODAL DEL MASTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h3>Contact the Game Master</h3>
@@ -43,7 +42,7 @@
     <div class="container">
         
         <div class="imagen-marco">
-            <img src="../recursos/p2-enigma.jpg" alt="Mont Taber Plaque">
+            <img src="../recursos/p2-enigma.jpg" alt="Mont Táber Plaque">
         </div>
 
         <div class="narrativa">
@@ -59,13 +58,11 @@
         </div>
 
         <div class="input-group">
-            <input type="text" id="respuesta" placeholder="Ex: 10,5">
+            <input type="text" id="respuesta" placeholder="Ex: 26.9">
         </div>
 
         <div class="navigation-controls">
             <button class="btn" onclick="comprobarRespuesta()">CHECK HEIGHT</button>
-            
-            <!-- BOTÓN CONTACTA CON EL MASTER -->
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Game Master</button>
         </div>
 
@@ -74,7 +71,7 @@
         <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 HINT</button>
         
         <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
-            <strong>Hint:</strong> Look for an oval metal plaque on the entrance wall. The number has a decimal comma (or dot).
+            <strong>Hint:</strong> Look for an oval metal plaque on the entrance wall. The number has a decimal point (or comma).
         </div>
         
     </div>
@@ -88,10 +85,12 @@
             let input = document.getElementById('respuesta').value;
             let feedback = document.getElementById('mensaje-error');
             
-            let respuestaLimpia = input.toLowerCase().trim().replace('m', '').replace('mts', '').replace('.', ',').trim();
+            // Reemplazamos tanto comas como puntos para que acepte cualquier formato
+            let respostaNeta = input.toLowerCase().trim().replace('m', '').replace('mts', '').replace(',', '.').trim();
 
-            if (respuestaLimpia === "16,9" || respuestaLimpia === "16,90") {
-                window.location.href = 'p2-recompensa_en.html';
+            // SOLUCIÓN (Aceptamos punto o coma)
+            if (respostaNeta === "16.9" || respostaNeta === "16.90") {
+                avanzarA('p2-recompensa');
             } else {
                 intentos++;
                 feedback.style.display = 'block';
@@ -109,9 +108,6 @@
             document.getElementById('texto-pista').style.display = 'block';
             document.getElementById('btn-pista').style.display = 'none';
         }
-
-        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
-        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

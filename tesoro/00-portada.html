@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Tesoro de Barcino</title>
-    <!-- Estilos del juego -->
     <link rel="stylesheet" href="tesoro-estilos.css">
-    <!-- Configuración -->
     <script src="../config.js"></script>
+    <script src="candado.js"></script> <!-- Importa candado.js aquí para sus funciones globales -->
 </head>
 <body>
 
@@ -18,6 +17,19 @@
             <p style="margin-bottom:20px;">Parece que ya habías empezado la búsqueda.</p>
             <button class="btn" id="btn-continuar" style="margin-bottom:15px;">CONTINUAR DONDE LO DEJÉ</button>
             <button class="hint-btn" id="btn-reiniciar">EMPEZAR DE CERO</button>
+        </div>
+    </div>
+
+    <!-- MODAL DE AYUDA DIRECTA -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta con el Master</h3>
+            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Teléfono / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
         </div>
     </div>
 
@@ -45,52 +57,30 @@
         </div>
 
         <div class="navigation-controls">
-            <!-- Al pulsar, vamos a la Parada 1 -->
-            <button class="btn" onclick="empezarJuego()">ACEPTO EL RETO</button>
-             <!-- Botón para abrir el modal de ayuda -->
-             <button class="hint-btn" onclick="openHelpModal()">🆘 Contacta con el Master</button>
+            <!-- Usa avanzarA del candado.js -->
+            <button class="btn" onclick="avanzarA('p1-navegacion')">ACEPTO EL RETO</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
         </div>
 
     </div>
 
-    <script src="candado.js"></script>
-
     <script>
-        // Lógica de Continuar Partida
+        // Lógica de Continuar Partida (al cargar la página)
         document.addEventListener("DOMContentLoaded", function() {
             let paginaGuardada = localStorage.getItem('progresoJuego');
             if (paginaGuardada) {
                 let modal = document.getElementById('continue-modal');
                 modal.style.display = 'flex';
-                document.getElementById('btn-continuar').onclick = function() { window.location.href = paginaGuardada; };
-                document.getElementById('btn-reiniciar').onclick = function() { localStorage.removeItem('progresoJuego'); modal.style.display = 'none'; };
+                document.getElementById('btn-continuar').onclick = function() { 
+                    window.location.href = paginaGuardada; // La URL ya viene con el idioma correcto
+                };
+                document.getElementById('btn-reiniciar').onclick = function() { 
+                    localStorage.removeItem('progresoJuego'); 
+                    modal.style.display = 'none'; 
+                };
             }
         });
-
-        function empezarJuego() {
-            // Guardamos que empezamos y vamos a la Parada 1
-            let primeraParada = "p1-navegacion.html";
-            localStorage.setItem('progresoJuego', primeraParada);
-            window.location.href = primeraParada;
-        }
+        // empezarJuego ya no es necesaria aquí, usar avanzarA directamente en el botón
     </script>
-       <!-- === MODAL DE AYUDA DIRECTA (AÑADIDO) === -->
-    <div id="help-modal" class="modal-overlay" onclick="closeHelpModal()">
-        <div class="modal-content" onclick="event.stopPropagation();">
-            <h3>¿Necesitas Ayuda?</h3>
-            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente con nosotros.</p>
-            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
-                Teléfono / WhatsApp:<br>
-                664 252 723
-            </p>
-            <button class="btn" onclick="closeHelpModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
-        </div>
-    </div>
-
-    <script>
-        function openHelpModal() { document.getElementById('help-modal').style.display = 'flex'; }
-        function closeHelpModal() { document.getElementById('help-modal').style.display = 'none'; }
-    </script>
-    <!-- ======================================= -->
 </body>
 </html>

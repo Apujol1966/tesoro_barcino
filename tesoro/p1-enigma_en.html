@@ -8,15 +8,16 @@
     <script src="../config.js"></script>
 
     <style>
-        /* ESTILOS DEL MODAL DEL MÀSTER */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center;
+            background-color: rgba(0,0,0,0.9);
+            display: none; align-items: center; justify-content: center;
             z-index: 1000; padding: 20px; box-sizing: border-box;
         }
         .modal-content {
             background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
-            padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px;
+            padding: 25px; border-radius: 4px; text-align: center;
+            width: 100%; max-width: 400px;
             box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
         .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
@@ -24,7 +25,7 @@
 </head>
 <body>
 
-    <!-- MODAL DEL MÀSTER -->
+    <!-- MODAL DEL MASTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h3>Contact the Game Master</h3>
@@ -60,8 +61,6 @@
 
         <div class="navigation-controls">
             <button class="btn" onclick="comprobarRespuesta()">CHECK</button>
-            
-            <!-- BOTÓN MÀSTER -->
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Game Master</button>
         </div>
 
@@ -86,10 +85,8 @@
             
             let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-            // SOLUCIÓN
             if (respuestaLimpia === "2" || respuestaLimpia === "TWO" || respuestaLimpia === "TWO ARCHES") {
-                // Va al siguiente archivo en inglés
-                window.location.href = 'p1-recompensa_en.html';
+                avanzarA('p1-recompensa');
             } else {
                 intentos++;
                 feedback.style.display = 'block';
@@ -107,10 +104,6 @@
             document.getElementById('texto-pista').style.display = 'block';
             document.getElementById('btn-pista').style.display = 'none';
         }
-
-        // LÒGICA DEL MÀSTER
-        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
-        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

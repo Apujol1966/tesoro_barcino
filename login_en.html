@@ -94,13 +94,9 @@
             const input = document.getElementById('password').value.trim().toUpperCase();
             
             if (typeof CLAVE_ACTUAL !== 'undefined' && input === CLAVE_ACTUAL) {
-                // Guardamos la clave de acceso
                 localStorage.setItem('clave_guardada', input);
-                // Guardamos explícitamente el idioma como inglés
-                localStorage.setItem('idioma_preferido', 'en'); 
-                
-                // Redirigimos a la página de instrucciones en inglés
-                window.location.href = 'tesoro/01-instrucciones_en.html';
+                localStorage.setItem('idioma_preferido', 'en'); // Guarda el idioma 'en'
+                window.location.href = 'tesoro/01-instrucciones_en.html'; // Redirige a la página de instrucciones en inglés
 
             } else {
                 const errorDiv = document.getElementById('error');

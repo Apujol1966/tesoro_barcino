@@ -34,7 +34,7 @@
 </head>
 <body>
 
-    <!-- 1. MODAL DEL GUARDIÁN (Pista de Navegación) -->
+    <!-- 1. MODAL DEL GUARDIÁN -->
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h3>Demuestra tu atención</h3>
@@ -50,7 +50,7 @@
         </div>
     </div>
 
-    <!-- 2. MODAL DEL MASTER (Ayuda Directa) -->
+    <!-- 2. MODAL DEL MASTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h3>Contacta con el Master</h3>
@@ -74,7 +74,6 @@
             <img src="../recursos/p1-inicio.jpg" alt="Inicio del camino">
         </div>
 
-        <!-- PISTA POÉTICA (Comillas arregladas: abren al principio, cierran al final) -->
         <div class="narrativa" style="font-style: italic;">
             <p style="font-style: normal;"><strong>Seguid el sendero de mis palabras...</strong></p>
             
@@ -87,11 +86,9 @@
             <p>Allí, donde su arteria empieza y termina, donde siete figuras custodiadas por el Sol y la Luna descansan en el suelo, escrito con ellas encontraréis el camino a seguir."</p>
         </div>
 
-        <!-- BOTÓN DE AYUDA DE NAVEGACIÓN -->
         <div style="width: 100%; margin-bottom: 20px; text-align: center;">
             <button class="hint-btn" onclick="openGuardianModal()" id="btn-pista-trigger">📍 Estoy perdido (Pedir Ayuda)</button>
             
-            <!-- PISTA DIRECTA (Se muestra solo tras acertar la pregunta) -->
             <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px; font-style: normal;">
                 <p><strong>Pista de Navegación:</strong></p>
                 <p>Sitúate en Plaça Catalunya. Baja por la avenida <strong>Portal de l'Àngel</strong> hasta el final.</p>
@@ -102,10 +99,9 @@
         </div>
 
         <div class="navigation-controls">
-            <!-- Botón para ir al ENIGMA -->
-            <button class="btn" onclick="window.location.href='p1-enigma.html'">HE LLEGADO A LAS VENAS DE PIEDRA</button>
+            <!-- AQUÍ ESTÁ EL CAMBIO PARA GUARDAR PROGRESO -->
+            <button class="btn" onclick="avanzarA('p1-enigma')">HE LLEGADO A LAS VENAS DE PIEDRA</button>
             
-            <!-- BOTÓN CONTACTA CON EL MASTER (Fijo al final, no flotante) -->
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
         </div>
 
@@ -115,7 +111,6 @@
     <script src="candado.js"></script>
 
     <script>
-        // --- LÓGICA DEL GUARDIÁN ---
         var gModal = document.getElementById('guardian-modal');
         var gErrorMsg = document.getElementById('guardian-error');
         var gInput = document.getElementById('guardian-answer');
@@ -144,10 +139,6 @@
                 setTimeout(() => gInput.style.borderColor = "#555", 500);
             }
         }
-
-        // --- LÓGICA DEL MASTER ---
-        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
-        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

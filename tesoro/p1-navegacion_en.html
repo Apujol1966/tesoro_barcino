@@ -4,24 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The First Step</title>
+    <!-- Estilos Generales -->
     <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
     <script src="../config.js"></script>
 
     <style>
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center;
+            background-color: rgba(0,0,0,0.9);
+            display: none; align-items: center; justify-content: center;
             z-index: 1000; padding: 20px; box-sizing: border-box;
         }
         .modal-content {
             background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
-            padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px;
+            padding: 25px; border-radius: 4px; text-align: center;
+            width: 100%; max-width: 400px;
             box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
         .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
         .modal-input {
-            width: 100%; padding: 10px; margin: 15px 0; background: #1a1a1a; border: 1px solid #555; 
-            color: #fff; text-align: center; font-size: 1.1rem; box-sizing: border-box;
+            width: 100%; padding: 10px; margin: 15px 0;
+            background: #1a1a1a; border: 1px solid #555; color: #fff;
+            text-align: center; font-size: 1.1rem; box-sizing: border-box;
         }
         .error-msg { color: #ff6b6b; font-size: 0.9rem; margin-top: 10px; display: none; }
     </style>
@@ -68,17 +73,17 @@
             <img src="../recursos/p1-inicio.jpg" alt="Path start">
         </div>
 
-        <!-- PISTA POÉTICA -->
+        <!-- PISTA POÉTICA (Texto actualizado y rítmico) -->
         <div class="narrativa" style="font-style: italic;">
             <p style="font-style: normal;"><strong>Follow the path of my words...</strong></p>
             
-            <p>"From the place where your journey begins, you must pass through the fountain of the most innocent with their baskets and continue along the path of the <strong>Angel</strong>.</p>
+            <p>"From the place where your journey begins, pass through the fountain of the most innocent, with their baskets in hand, and continue along the <strong>Angel</strong>’s portal as planned.</p>
             
-            <p>Almost at the end of the road, when you don't know which direction to take, leave the women carrying amphorae to your right.</p>
+            <p>Near the end of the way, when you hesitate, leave the women carrying amphorae to your right and don't wait.</p>
             
-            <p>To Barcino, my city, its blood in the form of the liquid of life arrives through its veins made of stone.</p>
+            <p>To Barcino, my city, the blood of life must flow, through veins of stone, as you will soon know.</p>
             
-            <p>There, where its artery begins and ends, where seven figures guarded by the Sun and the Moon rest on the ground, written with them you will find the way forward."</p>
+            <p>There, where its great artery begins and ends, where seven figures rest, by the Sun and Moon’s defense, engraved among them, my final voice transcends."</p>
         </div>
 
         <div style="width: 100%; margin-bottom: 20px; text-align: center;">
@@ -94,14 +99,15 @@
         </div>
 
         <div class="navigation-controls">
-            <!-- Enlace a la versión en inglés del enigma -->
-            <button class="btn" onclick="window.location.href='p1-enigma_en.html'">I HAVE REACHED THE STONE VEINS</button>
+            <!-- Avanzamos guardando el progreso -->
+            <button class="btn" onclick="avanzarA('p1-enigma')">I HAVE REACHED THE STONE VEINS</button>
             
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Game Master</button>
         </div>
 
     </div>
 
+    <!-- Candado de seguridad -->
     <script src="candado.js"></script>
 
     <script>
