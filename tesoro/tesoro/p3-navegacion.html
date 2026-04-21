@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parada 3: El Patio de los Reyes</title>
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <script src="../config.js"></script>
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta con el Master</h3>
+            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Teléfono / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>El Reflejo de la Ciudad</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p3-camino.jpg" alt="Camino a la Plaça del Rei">
+        </div>
+
+        <div class="narrativa" style="font-style: italic;">
+            <p>"Conforme bajes caminando por las piedras de la estrecha <strong>Baixada de Santa Clara</strong>, a tu izquierda se alzarán los muros que guardan la memoria de los reyes.</p>
+            
+            <p>Has llegado al patio de los reyes, donde el tiempo se detiene.</p>
+            
+            <p>Para demostrar que tus pies pisan las mismas losas que los míos, busca a tu alrededor un lugar de rezo elevado.</p>
+            
+            <p>Cuenta los peldaños de piedra. Solo la puerta a la que se llega ascendiendo exactamente <strong>15 escalones</strong> custodia la respuesta que busco.</p>
+            
+            <p>Sube esos 15 peldaños, acércate a la puerta y lee el rótulo.</p>
+            
+            <p style="font-style: normal;"><strong>¿A qué figura sagrada está dedicado este recinto?</strong>"</p>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="respuesta" placeholder="Escribe el nombre...">
+        </div>
+
+        <div class="navigation-controls">
+            <!-- AVANZAMOS A LA PANTALLA DE OBSERVACIÓN (Enigma) -->
+            <button class="btn" onclick="comprobarRespuesta()">COMPROBAR</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+        </div>
+
+        <div id="mensaje-error" class="feedback error" style="display: none;">Ese no es el nombre correcto. Sube la escalinata y lee bien la placa.</div>
+
+        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
+        
+        <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
+            <strong>Pista:</strong> A un lado de la plaza hay una escalinata que sube hacia una pequeña capilla gótica (es parte del Palacio Real). En la placa de la puerta pone "Capella de Santa...".
+        </div>
+
+    </div>
+
+    <script src="candado.js"></script>
+
+    <script>
+        let intentos = 0;
+
+        function comprobarRespuesta() {
+            let input = document.getElementById('respuesta').value;
+            let feedback = document.getElementById('mensaje-error');
+            
+            let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            // SOLUCIÓN: SANTA AGATA
+            if (respuestaLimpia.includes("AGATA") || respuestaLimpia.includes("SANTA AGATA") || respuestaLimpia.includes("CAPILLA DE SANTA AGATA") || respuestaLimpia.includes("IGLESIA DE SANTA AGATA")) {
+                avanzarA('p3-enigma');
+            } else {
+                intentos++;
+                feedback.style.display = 'block';
+                let inputField = document.getElementById('respuesta');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+
+                if (intentos >= 3) {
+                    document.getElementById('btn-pista').style.display = 'inline-block';
+                }
+            }
+        }
+
+        function mostrarPista() {
+            document.getElementById('texto-pista').style.display = 'block';
+            document.getElementById('btn-pista').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
