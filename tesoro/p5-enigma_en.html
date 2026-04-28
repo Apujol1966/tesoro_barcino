@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Heart of the Temple</title>
+    <title>Stop 5: The Guardians of History</title>
     <!-- Styles -->
     <link rel="stylesheet" href="tesoro-estilos.css">
     <!-- Configuration -->
@@ -30,92 +30,65 @@
     </div>
 
     <header class="header">
-        <h1>The Heart of the Temple</h1>
+        <h1>The Eternal Dwelling</h1>
     </header>
 
     <div class="container">
         
         <div class="imagen-marco">
-            <img src="../recursos/p2-recompensa.jpg" alt="Columns of the Temple of Augustus">
+            <img src="../recursos/p5-enigma.jpg" alt="Entrance to the Sepulchral Way">
         </div>
 
         <div class="narrativa">
-            <p style="font-size: 1.2rem;"><strong>Exactly! 16.9 meters.</strong></p>
-            
-            <p>Go ahead, cross the hall and behold at last what I have protected: the final vestiges of the Temple of Augustus.</p>
+            <p style="font-size: 1.1rem; color: var(--color-acento-rojo-quemado);"><strong>You have reached the edge of time.</strong></p>
 
-            <!-- LINK IF CLOSED -->
-            <div style="text-align:center; margin: 15px 0;">
-                <p style="font-size: 0.9rem;"><em>(If it's closed, do not worry)</em></p>
-                <a href="pista-cerrado_en.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem; text-decoration: none;">
-                    See the inside
-                </a>
-            </div>
-
-            <!-- RIDDLE FRAGMENT -->
-            <div style="border-top: 1px solid var(--color-acento-tierra); margin-top: 20px; padding-top: 20px; font-style: italic;">
-                <p>"If you read these words where you must, you have known how to listen to my message.</p>
-                <p>Now, to follow the path, you must imitate a traveler.</p>
-                <p>To know the traveler, I give you a clue. Solve it and follow its path.</p>
-                <p style="font-style: normal;"><strong>Where was I when my body was whole?</strong>"</p>
+            <div style="border-top: 1px solid var(--color-acento-tierra); padding-top: 15px; font-style: italic;">
+                <p>"You have reached the edge of the ancient city, where the noise of your time stops before the silence of my ancestors.</p>
+                
+                <p>A great rusted metal wall now guards the entrance to our eternal home. On it, the men of your century have engraved the acronym of those who today guard my history and the secrets of Barcino. If you are in front of the gate, you will see them shining in the metal."</p>
             </div>
         </div>
 
-        <!-- RESPONSE FIELD -->
         <div class="input-group">
-            <input type="text" id="respuesta-acertijo" placeholder="Where was the traveler?">
+            <input type="text" id="respuesta" placeholder="Type the 5 letters...">
         </div>
 
         <div class="navigation-controls">
-            <button class="btn" onclick="comprobarAcertijo()">CHECK RIDDLE</button>
-            
+            <button class="btn" onclick="comprobarRespuesta()">CHECK</button>
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Game Master</button>
         </div>
 
-        <div id="mensaje-error" class="feedback error" style="display: none;">That is not the place. Think about the column's journey.</div>
+        <div id="mensaje-error" class="feedback error" style="display: none;">That is not the correct acronym. Look closely at the letters on the metal plate.</div>
 
         <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 HINT</button>
         
         <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
-            <strong>Hint:</strong> One of the columns you see fell and was moved to a famous nearby medieval square, where the Royal Palace and the History Museum are located.
+            <strong>Hint:</strong> Look for the largest letters on the rusted steel plate, right below "VIA SEPULCRAL ROMANA". It is the name of the Barcelona History Museum.
         </div>
 
     </div>
 
-    <!-- Candado -->
     <script src="candado.js"></script>
 
     <script>
         let intentos = 0;
-
-        function comprobarAcertijo() {
-            let input = document.getElementById('respuesta-acertijo').value;
+        function comprobarRespuesta() {
+            let input = document.getElementById('respuesta').value;
             let feedback = document.getElementById('mensaje-error');
-            
-            let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let respuestaLimpia = input.trim().toUpperCase();
 
-            // SOLUTION: KING'S SQUARE / PLAZA DEL REY
-            if (respuestaLimpia.includes("KING") || respuestaLimpia.includes("REI") || respuestaLimpia.includes("REY")) {
-                // Correct: Advance to next stop
-                avanzarA('p3-navegacion');
+            if (respuestaLimpia === "MUHBA") {
+                avanzarA('p5-recompensa');
             } else {
                 intentos++;
                 feedback.style.display = 'block';
-                let inputField = document.getElementById('respuesta-acertijo');
+                let inputField = document.getElementById('respuesta');
                 inputField.style.borderColor = '#ff6b6b';
                 setTimeout(() => { inputField.style.borderColor = ''; }, 500);
-
-                if (intentos >= 3) {
-                    document.getElementById('btn-pista').style.display = 'inline-block';
-                }
+                if (intentos >= 3) { document.getElementById('btn-pista').style.display = 'inline-block'; }
             }
         }
-
-        function mostrarPista() {
-            document.getElementById('texto-pista').style.display = 'block';
-            document.getElementById('btn-pista').style.display = 'none';
-        }
-
+        function mostrarPista() { document.getElementById('texto-pista').style.display = 'block'; document.getElementById('btn-pista').style.display = 'none'; }
         function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
         function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
