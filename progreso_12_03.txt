@@ -1,4 +1,4 @@
-📜 DOCUMENTO MAESTRO: EL TESORO DE BARCINO
+📜 DOCUMENTO MAESTRO: EL TESORO DE BARCINo
 Estado: En desarrollo (Paradas 1 y 2 completadas).
 Estilo Visual: Ruinas y Grabados (Oscuro, Piedra, Rojo Óxido).
 1. ESTRUCTURA DE ARCHIVOS Y CARPETAS
